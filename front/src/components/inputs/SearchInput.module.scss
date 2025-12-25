@@ -1,0 +1,27 @@
+@use "/src/styles/variables/colors" as c;
+
+.wrapper {
+  display: flex;
+  position: relative;
+  width: 100%;
+  img {
+    position: absolute;
+    top: 50%;
+    left: 1.5rem;
+    transform: translateY(-50%);
+  }
+  .input {
+    width: 100%;
+    border: 1px solid c.$gray-200;
+    border-radius: 1rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding: 1.1rem 1.5rem;
+  }
+  .inputWithIcon {
+    padding: 1.1rem calc(1.5rem + 1.8rem + 0.5rem);
+  }
+  .input::placeholder {
+    color: c.$gray-200;
+  }
+}
