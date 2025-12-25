@@ -1,0 +1,53 @@
+@use "/src/styles/variables/colors" as c;
+
+.base {
+  display: flex;
+  justify-content: center;
+  border-radius: 1rem;
+  font-weight: 400;
+}
+
+.smSize {
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+}
+.mdSize {
+  font-size: 2rem;
+  padding: 1rem 2rem;
+}
+.fullSize {
+  width: 100%;
+  font-size: 1.6rem;
+  padding: 1.65rem 0;
+}
+
+.colorWhite {
+  color: c.$white;
+}
+.colorGray {
+  color: c.$gray-300;
+}
+.colorBlack {
+  color: c.$black;
+}
+
+.bgWhite {
+  background-color: c.$white;
+}
+.bgOrange {
+  background-color: c.$orange;
+}
+
+.smBorder {
+  border: 1px solid;
+}
+.mdBorder {
+  border: 2px solid;
+}
+
+.borderBlack {
+  border-color: c.$gray-200;
+}
+.borderGray {
+  border-color: c.$gray-300;
+}
