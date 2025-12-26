@@ -24,7 +24,10 @@ const LandingLayout = () => {
       <main>
         <Outlet />
       </main>
-      <footer></footer>
+      <footer>
+        <img src={logo} alt="NoticeFlow 로고" />
+        <small>&copy; 2025 NoticeFlow. All rights reserved.</small>
+      </footer>
     </>
   );
 };
