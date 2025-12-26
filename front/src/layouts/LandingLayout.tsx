@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router";
-import logo from "../assets/icons/logo.svg";
+import logo from "@/assets/icons/logo.svg";
 import style from "./LandingLayout.module.scss";
-import Button from "../components/buttons/Button.tsx";
+import Button from "@/components/buttons/Button.tsx";
 
 const LandingLayout = () => {
   return (

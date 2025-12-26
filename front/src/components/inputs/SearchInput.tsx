@@ -1,6 +1,6 @@
 import style from "./SearchInput.module.scss";
 import type { ChangeEvent } from "react";
-import searchIcon from "../../assets/icons/search.svg";
+import searchIcon from "@/assets/icons/search.svg";
 
 interface InputProps {
   id: string;
