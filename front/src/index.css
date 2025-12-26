@@ -172,3 +172,7 @@ html {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
+
+body {
+  background-color: #f8f7f8;
+}

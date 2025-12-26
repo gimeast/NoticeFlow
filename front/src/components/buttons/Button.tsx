@@ -4,7 +4,7 @@ import style from "./Button.module.scss";
 interface ButtonProps {
   children: React.ReactNode;
   type: "button" | "submit";
-  size: "sm" | "md" | "full";
+  size?: "sm" | "md" | "full";
   color?: "white" | "gray" | "black";
   bgColor?: "white" | "orange";
   border?: 1 | 2;
