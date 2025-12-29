@@ -1,54 +1,54 @@
-@use "@/styles/variables/colors" as c;
+@use '@/styles/variables/colors' as c;
 
 .base {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 1rem;
-  font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    font-weight: 400;
 }
 
 .smSize {
-  font-size: 1.6rem;
-  padding: 1rem 2rem;
+    font-size: 1.6rem;
+    padding: 1rem 2rem;
 }
 .mdSize {
-  font-size: 2rem;
-  padding: 1rem 2rem;
+    font-size: 2rem;
+    padding: 1rem 2rem;
 }
 .fullSize {
-  width: 100%;
-  font-size: 1.6rem;
-  padding: 1.65rem 0;
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 1.65rem 0;
 }
 
 .colorWhite {
-  color: c.$white;
+    color: c.$white;
 }
 .colorGray {
-  color: c.$gray-300;
+    color: c.$gray-300;
 }
 .colorBlack {
-  color: c.$black;
+    color: c.$black;
 }
 
 .bgWhite {
-  background-color: c.$white;
+    background-color: c.$white;
 }
 .bgOrange {
-  background-color: c.$orange;
+    background-color: c.$orange;
 }
 
 .smBorder {
-  border: 1px solid;
+    border: 1px solid;
 }
 .mdBorder {
-  border: 2px solid;
+    border: 2px solid;
 }
 
 .borderBlack {
-  border-color: c.$gray-200;
+    border-color: c.$gray-200;
 }
 .borderGray {
-  border-color: c.$gray-300;
+    border-color: c.$gray-300;
 }

@@ -1,35 +1,35 @@
-@use "@/styles/variables/colors" as c;
+@use '@/styles/variables/colors' as c;
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  max-width: 192rem;
-  margin: 0 auto;
-  padding: 2rem 25rem;
-
-  .headerButtonGroup {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 4rem;
 
-    .loginButton {
-      font-size: 1.6rem;
+    max-width: 192rem;
+    margin: 0 auto;
+    padding: 2rem 25rem;
+
+    .headerButtonGroup {
+        display: flex;
+        align-items: center;
+        gap: 4rem;
+
+        .loginButton {
+            font-size: 1.6rem;
+        }
     }
-  }
 }
 
 main {
-  border-top: 1px solid c.$gray-200;
+    border-top: 1px solid c.$gray-200;
 }
 
 footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-  max-width: 192rem;
-  margin: 0 auto;
-  padding: 5rem 25rem;
+    max-width: 192rem;
+    margin: 0 auto;
+    padding: 5rem 25rem;
 }
