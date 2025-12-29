@@ -32,6 +32,9 @@ footer {
     max-width: 192rem;
     margin: 0 auto;
     padding: 5rem 0;
+
+    font-size: 2rem;
+    color: c.$gray-300;
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1920px) {
