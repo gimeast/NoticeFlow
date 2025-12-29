@@ -7,15 +7,18 @@ header {
 
     max-width: 192rem;
     margin: 0 auto;
-    padding: 2rem 0;
+    padding: 2rem 2.5rem;
 
+    img {
+        width: 12rem;
+    }
     .headerButtonGroup {
         display: flex;
         align-items: center;
-        gap: 4rem;
+        gap: 2rem;
 
-        .loginButton {
-            font-size: 1.6rem;
+        button {
+            font-size: 1.2rem;
         }
     }
 }
@@ -31,17 +34,57 @@ footer {
 
     max-width: 192rem;
     margin: 0 auto;
-    padding: 5rem 0;
+    padding: 2.5rem 2.5rem;
 
-    font-size: 2rem;
+    font-size: 1.2rem;
     color: c.$gray-300;
+
+    img {
+        width: 12rem;
+    }
 }
 
-@media screen and (min-width: 1024px) and (max-width: 1920px) {
+@media screen and (min-width: 768px) {
     header {
-        padding: 2rem 25rem;
+        padding: 2rem 5rem;
+
+        img {
+            width: 14.5rem;
+        }
+        .headerButtonGroup {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+
+            button {
+                font-size: 1.6rem;
+            }
+        }
     }
     footer {
+        font-size: 1.6rem;
+        padding: 5rem 5rem;
+
+        img {
+            width: 14.5rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    header {
+        padding: 2rem 25rem;
+
+        img {
+            width: 16.3rem;
+        }
+    }
+    footer {
+        font-size: 1.6rem;
         padding: 5rem 25rem;
+
+        img {
+            width: 16.3rem;
+        }
     }
 }

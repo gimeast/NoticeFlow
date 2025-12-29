@@ -5,31 +5,31 @@
     flex-direction: column;
     align-items: center;
 
-    margin-top: 10rem;
+    margin-top: 4rem;
 
     h2 {
         font-weight: 700;
-        font-size: 3.2rem;
+        font-size: 2.4rem;
     }
     p {
-        margin-top: 2rem;
+        margin-top: 1.2rem;
         color: c.$gray-300;
-        font-size: 1.6rem;
+        font-size: 1.2rem;
     }
 
     .featureList {
         display: grid;
-        grid-template-columns: repeat(auto-fit, 30rem);
+        grid-template-columns: repeat(auto-fit, 24rem);
         justify-content: center;
-        gap: 5rem;
+        gap: 2.5rem;
 
         width: 100%;
-        margin-top: 7rem;
+        margin-top: 2rem;
 
         li {
-            padding: 3.3rem 3.5rem;
+            padding: 2rem 3rem;
 
-            height: 20rem;
+            height: 14rem;
 
             background-color: c.$white;
             border-radius: 2rem;
@@ -47,14 +47,14 @@
             }
 
             h3 {
-                margin-top: 2rem;
+                margin-top: 1rem;
                 font-weight: 500;
-                font-size: 2rem;
+                font-size: 1.6rem;
             }
             p {
-                margin-top: 1rem;
+                margin-top: 0.6rem;
                 color: c.$gray-300;
-                font-size: 1.6rem;
+                font-size: 1.2rem;
 
                 word-break: keep-all;
             }
@@ -67,42 +67,41 @@
     flex-direction: column;
     align-items: center;
 
-    margin-top: 10rem;
+    margin-top: 4rem;
 
     h2 {
         font-weight: 700;
-        font-size: 3.2rem;
+        font-size: 2.4rem;
     }
     p {
-        margin-top: 2rem;
+        margin-top: 1.2rem;
 
-        font-size: 1.6rem;
+        font-size: 1.2rem;
         color: c.$gray-300;
     }
 
     .organList {
         display: grid;
-        grid-template-columns: repeat(auto-fit, 30rem);
+        grid-template-columns: repeat(auto-fit, 24rem);
         justify-content: center;
-        gap: 5rem;
+        gap: 2.5rem;
 
         width: 100%;
-        margin-top: 7rem;
+        margin-top: 2rem;
 
         li {
-            width: 30rem;
-            height: 20rem;
+            height: 14rem;
 
-            padding: 4rem 3.5rem;
+            padding: 2rem 3rem;
 
             background-color: c.$white;
             border-radius: 2rem;
 
             h3 {
-                margin-top: 1.5rem;
+                margin-top: 1rem;
 
                 font-weight: 500;
-                font-size: 2rem;
+                font-size: 1.6rem;
             }
         }
     }
@@ -114,15 +113,15 @@
     align-items: center;
 
     & > h2 {
-        margin-top: 10rem;
+        margin-top: 4rem;
 
         font-weight: 700;
-        font-size: 3.2rem;
+        font-size: 2.4rem;
     }
     & > p {
-        margin-top: 2rem;
+        margin-top: 1.2rem;
 
-        font-size: 1.6rem;
+        font-size: 1.2rem;
         color: c.$gray-300;
     }
 
@@ -130,10 +129,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 2rem;
+        gap: 1.2rem;
 
         width: 100%;
-        margin-top: 5rem;
+        margin-top: 2rem;
 
         li {
             display: flex;
@@ -141,30 +140,141 @@
             padding: 3rem 3.5rem;
 
             width: 100%;
-            max-width: 80rem;
+            max-width: 40rem;
 
             background-color: c.$white;
             border-radius: 2rem;
 
             .number {
                 height: fit-content;
-                padding: 1.3rem;
+                padding: 1rem;
 
                 font-weight: 500;
-                font-size: 2rem;
+                font-size: 1.8rem;
                 color: c.$white;
                 background-color: c.$orange;
                 border-radius: 50%;
             }
             h3 {
                 font-weight: 500;
-                font-size: 2rem;
+                font-size: 1.6rem;
             }
             p {
                 margin-top: 1rem;
 
-                font-size: 1.6rem;
+                font-size: 1.2rem;
                 color: c.$gray-300;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .featureSection {
+        h2 {
+            font-size: 3.2rem;
+        }
+        p {
+            font-size: 1.6rem;
+        }
+        .featureList {
+            grid-template-columns: repeat(auto-fit, 30rem);
+            gap: 5rem;
+
+            margin-top: 7rem;
+
+            li {
+                padding: 3.3rem 3.5rem;
+
+                height: 20rem;
+
+                .imgWrapper {
+                    width: 4.2rem;
+                    height: 4.2rem;
+
+                    border-radius: 1rem;
+                }
+
+                h3 {
+                    margin-top: 2rem;
+                    font-size: 2rem;
+                }
+                p {
+                    margin-top: 1rem;
+                    font-size: 1.6rem;
+                }
+            }
+        }
+    }
+
+    .organSection {
+        margin-top: 10rem;
+
+        h2 {
+            font-size: 3.2rem;
+        }
+        p {
+            margin-top: 2rem;
+
+            font-size: 1.6rem;
+        }
+
+        .organList {
+            grid-template-columns: repeat(auto-fit, 30rem);
+            gap: 5rem;
+
+            margin-top: 7rem;
+
+            li {
+                width: 30rem;
+                height: 20rem;
+
+                padding: 4rem 3.5rem;
+
+                h3 {
+                    margin-top: 1.5rem;
+
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+    .useSection {
+        & > h2 {
+            margin-top: 10rem;
+
+            font-size: 3.2rem;
+        }
+        & > p {
+            margin-top: 2rem;
+
+            font-size: 1.6rem;
+        }
+
+        .useList {
+            gap: 2rem;
+
+            margin-top: 5rem;
+
+            li {
+                padding: 3rem 3.5rem;
+
+                max-width: 80rem;
+
+                .number {
+                    padding: 1.3rem;
+
+                    font-size: 2rem;
+                }
+                h3 {
+                    font-weight: 500;
+                    font-size: 2rem;
+                }
+                p {
+                    margin-top: 1rem;
+
+                    font-size: 1.6rem;
+                }
             }
         }
     }
