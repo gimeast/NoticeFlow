@@ -7,7 +7,7 @@ header {
 
     max-width: 192rem;
     margin: 0 auto;
-    padding: 2rem 25rem;
+    padding: 2rem 0;
 
     .headerButtonGroup {
         display: flex;
@@ -31,5 +31,14 @@ footer {
 
     max-width: 192rem;
     margin: 0 auto;
-    padding: 5rem 25rem;
+    padding: 5rem 0;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1920px) {
+    header {
+        padding: 2rem 25rem;
+    }
+    footer {
+        padding: 5rem 25rem;
+    }
 }
