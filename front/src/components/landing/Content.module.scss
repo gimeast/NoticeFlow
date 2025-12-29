@@ -1,0 +1,166 @@
+@use '@/styles/variables/colors' as c;
+
+.featureSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 10rem;
+
+    h2 {
+        font-weight: 700;
+        font-size: 3.2rem;
+    }
+    p {
+        margin-top: 2rem;
+        color: c.$gray-300;
+        font-size: 1.6rem;
+    }
+
+    .featureList {
+        display: flex;
+        gap: 5rem;
+
+        margin-top: 7rem;
+
+        li {
+            padding: 3.3rem 3.5rem;
+
+            width: 30rem;
+            height: 20rem;
+
+            background-color: c.$white;
+            border-radius: 2rem;
+
+            .imgWrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                width: 4.2rem;
+                height: 4.2rem;
+
+                background-color: c.$beige-200;
+                border-radius: 1rem;
+            }
+
+            h3 {
+                margin-top: 2rem;
+                font-weight: 500;
+                font-size: 2rem;
+            }
+            p {
+                margin-top: 1rem;
+                color: c.$gray-300;
+                font-size: 1.6rem;
+
+                word-break: keep-all;
+            }
+        }
+    }
+}
+
+.organSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 10rem;
+
+    h2 {
+        font-weight: 700;
+        font-size: 3.2rem;
+    }
+    p {
+        margin-top: 2rem;
+
+        font-size: 1.6rem;
+        color: c.$gray-300;
+    }
+
+    .organList {
+        display: flex;
+        gap: 5rem;
+
+        margin-top: 7rem;
+
+        li {
+            width: 30rem;
+            height: 20rem;
+
+            padding: 4rem 3.5rem;
+
+            background-color: c.$white;
+            border-radius: 2rem;
+
+            h3 {
+                margin-top: 1.5rem;
+
+                font-weight: 500;
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+.useSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > h2 {
+        margin-top: 10rem;
+
+        font-weight: 700;
+        font-size: 3.2rem;
+    }
+    & > p {
+        margin-top: 2rem;
+
+        font-size: 1.6rem;
+        color: c.$gray-300;
+    }
+
+    .useList {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+
+        width: 100%;
+        margin-top: 5rem;
+
+        li {
+            display: flex;
+            gap: 3rem;
+            padding: 3rem 3.5rem;
+
+            width: 100%;
+            max-width: 80rem;
+
+            background-color: c.$white;
+            border-radius: 2rem;
+
+            .number {
+                height: fit-content;
+                padding: 1.3rem;
+
+                font-weight: 500;
+                font-size: 2rem;
+                color: c.$white;
+                background-color: c.$orange;
+                border-radius: 50%;
+            }
+            h3 {
+                font-weight: 500;
+                font-size: 2rem;
+            }
+            p {
+                margin-top: 1rem;
+
+                font-size: 1.6rem;
+                color: c.$gray-300;
+            }
+        }
+    }
+}
