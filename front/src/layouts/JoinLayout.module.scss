@@ -1,0 +1,33 @@
+@use '@/styles/variables/colors' as c;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+
+    .backWrapper {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        span {
+            color: c.$orange;
+            font-size: 1.4rem;
+        }
+    }
+    strong {
+        margin-top: 2rem;
+
+        font-weight: 700;
+        font-size: 2.4rem;
+    }
+    .about {
+        margin-top: 0.5rem;
+
+        font-size: 1.6rem;
+        color: c.$gray-300;
+    }
+}

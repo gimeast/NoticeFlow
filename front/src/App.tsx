@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import Landing from './pages/Landing.tsx';
 import LandingLayout from './layouts/LandingLayout.tsx';
 import Login from '@/pages/login/Login.tsx';
+import JoinType from '@/pages/join/JoinType.tsx';
+import JoinLayout from '@/layouts/JoinLayout.tsx';
 
 function App() {
     return (
@@ -11,6 +13,9 @@ function App() {
                     <Route path='/' element={<Landing />} />
                 </Route>
                 <Route path='/login' element={<Login />} />
+                <Route element={<JoinLayout />}>
+                    <Route path='/join' element={<JoinType />} />
+                </Route>
             </Routes>
         </BrowserRouter>
     );
