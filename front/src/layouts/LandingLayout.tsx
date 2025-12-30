@@ -1,5 +1,5 @@
 import { Link, Outlet } from 'react-router';
-import logo from '@/assets/icons/logo.svg';
+import logo from '@/assets/logo.svg';
 import style from './LandingLayout.module.scss';
 import Button from '@/components/buttons/Button.tsx';
 
@@ -13,9 +13,7 @@ const LandingLayout = () => {
                     </Link>
                 </h1>
                 <div className={style.headerButtonGroup}>
-                    <button className={style.loginButton} type='button'>
-                        로그인
-                    </button>
+                    <Link to='/login'>로그인</Link>
                     <Button type='button' size='sm' bgColor='orange' color='white'>
                         시작하기
                     </Button>

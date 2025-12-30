@@ -1,0 +1,85 @@
+@use '@/styles/variables/colors' as c;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 2rem;
+}
+
+.loginWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    max-width: 50rem;
+    padding: 2rem 5rem;
+
+    background-color: c.$white;
+    border-radius: 2rem;
+
+    strong {
+        margin-top: 1.5rem;
+
+        font-weight: 700;
+        font-size: 1.6rem;
+    }
+    .about {
+        margin-top: 0.5rem;
+
+        font-size: 1.2rem;
+        color: c.$gray-300;
+    }
+    button {
+        margin-top: 1rem;
+        font-size: 1.4rem;
+    }
+    .joinWrapper {
+        display: flex;
+        gap: 0.5rem;
+
+        margin-top: 1rem;
+
+        font-size: 1.2rem;
+
+        span {
+            color: c.$gray-300;
+        }
+        a {
+            color: c.$orange;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .loginWrapper {
+        max-width: 50rem;
+        padding: 3rem 5rem;
+
+        strong {
+            margin-top: 1.5rem;
+
+            font-size: 2rem;
+        }
+        .about {
+            margin-top: 1rem;
+
+            font-size: 1.4rem;
+        }
+        button {
+            margin-top: 2rem;
+            font-size: 1.6rem;
+        }
+        .joinWrapper {
+            gap: 0.5rem;
+
+            margin-top: 2rem;
+
+            font-size: 1.4rem;
+        }
+    }
+}
