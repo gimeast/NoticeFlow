@@ -10,10 +10,10 @@ const TopBanner = () => {
                 <img src={sendIcon} alt='' />
                 <span>단방향 소통으로 효율적인 공지 관리</span>
             </div>
-            <h2>
+            <p className={style.title}>
                 공지는 한 방향으로 <br /> 깔끔하게 전달하세요
-            </h2>
-            <p>
+            </p>
+            <p className={style.content}>
                 카카오톡, 라인의 양방향 소통이 불편하셨나요? <br />
                 NoticeFlow로 가정통신문, 회사 공지를 PDF로 깔끔하게 전달하세요.
             </p>
