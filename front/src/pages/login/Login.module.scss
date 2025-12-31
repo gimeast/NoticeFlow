@@ -38,21 +38,6 @@
         margin-top: 1rem;
         font-size: 1.4rem;
     }
-    .joinWrapper {
-        display: flex;
-        gap: 0.5rem;
-
-        margin-top: 1rem;
-
-        font-size: 1.2rem;
-
-        span {
-            color: c.$gray-300;
-        }
-        a {
-            color: c.$orange;
-        }
-    }
 }
 
 @media screen and (min-width: 768px) {
@@ -73,13 +58,6 @@
         button {
             margin-top: 2rem;
             font-size: 1.6rem;
-        }
-        .joinWrapper {
-            gap: 0.5rem;
-
-            margin-top: 2rem;
-
-            font-size: 1.4rem;
         }
     }
 }

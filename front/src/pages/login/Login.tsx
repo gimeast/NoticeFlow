@@ -1,7 +1,6 @@
 import LogoIcon from '@/assets/logoIcon.svg?react';
 import GoogleIcon from '@/assets/google_color.svg?react';
 import Button from '@/components/buttons/Button.tsx';
-import { Link } from 'react-router';
 import style from './Login.module.scss';
 
 const Login = () => {
@@ -16,10 +15,6 @@ const Login = () => {
                     <GoogleIcon />
                     Google 계정으로 로그인
                 </Button>
-                <div className={style.joinWrapper}>
-                    <span>계정이 없으신가요?</span>
-                    <Link to='/join'>회원가입</Link>
-                </div>
             </div>
         </div>
     );
