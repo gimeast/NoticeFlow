@@ -8,7 +8,6 @@ interface InputProps {
     value: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     placeholder: string;
-    hasIcon?: boolean;
 }
 
 const SearchInput = ({ id, label, value, onChange, placeholder }: InputProps) => {

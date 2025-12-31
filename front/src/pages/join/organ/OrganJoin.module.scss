@@ -1,0 +1,73 @@
+@use '@/styles/variables/colors' as c;
+
+.wrapper {
+    width: 100%;
+    max-width: 50rem;
+    padding: 5rem;
+    margin-top: 3rem;
+
+    border-radius: 2rem;
+    background-color: c.$white;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            font-weight: 500;
+            font-size: 2rem;
+        }
+        a {
+            font-size: 1.2rem;
+            color: c.$gray-300;
+        }
+    }
+    .type {
+        display: block;
+        margin-top: 3rem;
+        font-size: 1.4rem;
+    }
+    ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+
+        margin-top: 1rem;
+
+        li {
+            button {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 0.3rem;
+
+                width: 100%;
+                padding: 1rem 0 1.5rem;
+
+                font-size: 1.2rem;
+                border: 2px solid c.$gray-200;
+                border-radius: 1rem;
+            }
+            button:hover {
+                border-color: c.$yellow-200;
+                background-color: c.$beige-100;
+
+                transition: all 0.3s;
+                svg {
+                    transition: all 0.3s;
+                    fill: c.$orange;
+                }
+            }
+        }
+    }
+    form {
+        div {
+            margin-top: 2rem;
+        }
+        button {
+            margin-top: 3rem;
+        }
+    }
+}

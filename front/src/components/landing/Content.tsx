@@ -57,12 +57,12 @@ const Content = () => {
                         <p>가정통신문, 학사일정 안내</p>
                     </li>
                     <li>
-                        <CompanyIcon />
+                        <CompanyIcon fill='#FFBF02' />
                         <h3>회사</h3>
                         <p>사내 공지, 정책 안내</p>
                     </li>
                     <li>
-                        <ExerciseIcon />
+                        <ExerciseIcon fill='#FFBF02' />
                         <h3>헬스장</h3>
                         <p>시설 이용, 프로그램 안내</p>
                     </li>

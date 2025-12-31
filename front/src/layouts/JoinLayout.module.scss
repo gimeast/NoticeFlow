@@ -6,7 +6,8 @@
     justify-content: center;
     align-items: center;
 
-    height: 100vh;
+    min-height: 100vh;
+    padding: 5rem 0;
 
     .backWrapper {
         display: flex;

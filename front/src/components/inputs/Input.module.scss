@@ -1,0 +1,26 @@
+@use '@/styles/variables/colors' as c;
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    input {
+        padding: 1.1rem 1.5rem;
+
+        font-size: 1.4rem;
+        border: 1px solid c.$gray-200;
+        border-radius: 1rem;
+    }
+    input::placeholder {
+        color: c.$gray-200;
+    }
+}
+
+.smLabel {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.mdLabel {
+    font-size: 1.4rem;
+}

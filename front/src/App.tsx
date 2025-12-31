@@ -4,6 +4,7 @@ import LandingLayout from './layouts/LandingLayout.tsx';
 import Login from '@/pages/login/Login.tsx';
 import JoinType from '@/pages/join/JoinType.tsx';
 import JoinLayout from '@/layouts/JoinLayout.tsx';
+import OrganJoin from '@/pages/join/organ/OrganJoin.tsx';
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Route path='/login' element={<Login />} />
                 <Route element={<JoinLayout />}>
                     <Route path='/join' element={<JoinType />} />
+                    <Route path='/join/organ' element={<OrganJoin />} />
                 </Route>
             </Routes>
         </BrowserRouter>
