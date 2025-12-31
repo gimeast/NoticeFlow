@@ -1,4 +1,4 @@
-import arrowIcon from '@/assets/icons/arrow_orange.svg';
+import ArrowIcon from '@/assets/icons/arrow.svg?react';
 import style from './JoinLayout.module.scss';
 import { Link, Outlet } from 'react-router';
 
@@ -7,7 +7,7 @@ const JoinLayout = () => {
         <div className={style.container}>
             <h1 className='sr-only'>NoticeFlow 회원가입</h1>
             <Link className={style.backWrapper} to='/login'>
-                <img src={arrowIcon} alt='' />
+                <ArrowIcon fill='#F98C1E' style={{ transform: 'rotate(180deg)' }} />
                 <span>로그인으로 돌아가기</span>
             </Link>
             <strong>NoticeFlow</strong>

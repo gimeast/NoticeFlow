@@ -1,5 +1,5 @@
 import { Link, Outlet } from 'react-router';
-import logo from '@/assets/logo.svg';
+import Logo from '@/assets/logo.svg?react';
 import style from './LandingLayout.module.scss';
 import Button from '@/components/buttons/Button.tsx';
 
@@ -9,7 +9,7 @@ const LandingLayout = () => {
             <header>
                 <h1>
                     <Link to='/'>
-                        <img src={logo} alt='NoticeFlow 로고' />
+                        <Logo />
                     </Link>
                 </h1>
                 <div className={style.headerButtonGroup}>
@@ -23,7 +23,7 @@ const LandingLayout = () => {
                 <Outlet />
             </main>
             <footer>
-                <img src={logo} alt='NoticeFlow 로고' />
+                <Logo />
                 <small>&copy; 2025 NoticeFlow. All rights reserved.</small>
             </footer>
         </>

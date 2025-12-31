@@ -1,6 +1,6 @@
 import style from './JoinType.module.scss';
-import organIcon from '@/assets/icons/organ.svg';
-import personIcon from '@/assets/icons/person.svg';
+import OrganIcon from '@/assets/icons/organ.svg?react';
+import PersonIcon from '@/assets/icons/person.svg?react';
 import { Link } from 'react-router';
 
 const JoinType = () => {
@@ -10,7 +10,7 @@ const JoinType = () => {
             <ul>
                 <li>
                     <Link to='/join/organ'>
-                        <img src={organIcon} alt='' />
+                        <OrganIcon fill='#FFBF02' />
                         <div>
                             <span className={style.type}>기관 사용자</span>
                             <p className={style.typeContent}>학교, 회사, 헬스장 등 공지를 발송하는 기관</p>
@@ -19,7 +19,7 @@ const JoinType = () => {
                 </li>
                 <li>
                     <Link to='/join/user'>
-                        <img src={personIcon} alt='' />
+                        <PersonIcon fill='#FFBF02' />
                         <div>
                             <span className={style.type}>일반 사용자</span>
                             <p className={style.typeContent}>학부모, 직원, 회원 등 공지를 받는 사용자</p>

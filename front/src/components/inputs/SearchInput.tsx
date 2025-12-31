@@ -1,6 +1,6 @@
 import style from './SearchInput.module.scss';
 import type { ChangeEvent } from 'react';
-import searchIcon from '@/assets/icons/search.svg';
+import SearchIcon from '@/assets/icons/search.svg?react';
 
 interface InputProps {
     id: string;
@@ -11,15 +11,15 @@ interface InputProps {
     hasIcon?: boolean;
 }
 
-const SearchInput = ({ id, label, value, onChange, placeholder, hasIcon }: InputProps) => {
+const SearchInput = ({ id, label, value, onChange, placeholder }: InputProps) => {
     return (
         <div className={style.wrapper}>
-            {hasIcon && <img src={searchIcon} alt='' />}
+            <SearchIcon className={style.searchIcon} />
             <label className='sr-only' htmlFor={id}>
                 {label}
             </label>
             <input
-                className={`${style.input} ${hasIcon && style.inputWithIcon}`}
+                className={`${style.input} ${style.inputWithIcon}`}
                 id={id}
                 value={value}
                 onChange={onChange}

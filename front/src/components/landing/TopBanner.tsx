@@ -1,5 +1,5 @@
-import sendIcon from '@/assets/icons/send.svg';
-import arrowIcon from '@/assets/icons/arrow_right_white.svg';
+import SendIcon from '@/assets/icons/send.svg?react';
+import ArrowIcon from '@/assets/icons/arrow.svg?react';
 import style from './TopBanner.module.scss';
 import Button from '@/components/buttons/Button.tsx';
 
@@ -7,7 +7,7 @@ const TopBanner = () => {
     return (
         <section className={style.topBanner}>
             <div className={style.badge}>
-                <img src={sendIcon} alt='' />
+                <SendIcon />
                 <span>단방향 소통으로 효율적인 공지 관리</span>
             </div>
             <p className={style.title}>
@@ -19,7 +19,7 @@ const TopBanner = () => {
             </p>
             <Button type='button' size='sm' bgColor='orange' color='white'>
                 무료로 시작하기
-                <img src={arrowIcon} alt='' />
+                <ArrowIcon fill='#fff' />
             </Button>
         </section>
     );

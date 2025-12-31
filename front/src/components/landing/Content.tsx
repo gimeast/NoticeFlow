@@ -1,11 +1,11 @@
-import bellIcon from '@/assets/icons/bell.svg';
-import docsIcon from '@/assets/icons/docs.svg';
-import mailIcon from '@/assets/icons/mail.svg';
-import groupIcon from '@/assets/icons/group.svg';
-import schoolIcon from '@/assets/icons/school.svg';
-import companyIcon from '@/assets/icons/company.svg';
-import exerciseIcon from '@/assets/icons/exercise.svg';
-import academyIcon from '@/assets/icons/academy.svg';
+import BellIcon from '@/assets/icons/bell.svg?react';
+import DocsIcon from '@/assets/icons/docs.svg?react';
+import MailIcon from '@/assets/icons/mail.svg?react';
+import GroupIcon from '@/assets/icons/group.svg?react';
+import SchoolIcon from '@/assets/icons/school.svg?react';
+import CompanyIcon from '@/assets/icons/company.svg?react';
+import ExerciseIcon from '@/assets/icons/exercise.svg?react';
+import AcademyIcon from '@/assets/icons/academy.svg?react';
 
 import style from './Content.module.scss';
 
@@ -18,28 +18,28 @@ const Content = () => {
                 <ul className={style.featureList}>
                     <li>
                         <div className={style.imgWrapper}>
-                            <img src={bellIcon} alt='' />
+                            <BellIcon />
                         </div>
                         <h3>단방향 공지</h3>
                         <p>답장 없이 깔끔하게 공지만 전달하세요</p>
                     </li>
                     <li>
                         <div className={style.imgWrapper}>
-                            <img src={docsIcon} alt='' />
+                            <DocsIcon />
                         </div>
                         <h3>템플릿 시스템</h3>
                         <p>조직별 맞춤 템플릿으로 빠르게 작성</p>
                     </li>
                     <li>
                         <div className={style.imgWrapper}>
-                            <img src={mailIcon} alt='' />
+                            <MailIcon />
                         </div>
                         <h3>PDF 이메일 전송</h3>
                         <p>작성한 공지를 PDF로 변환해 자동 발송</p>
                     </li>
                     <li>
                         <div className={style.imgWrapper}>
-                            <img src={groupIcon} alt='' />
+                            <GroupIcon />
                         </div>
                         <h3>회원 관리</h3>
                         <p>UUID 키로 간편하게 회원 연동</p>
@@ -52,22 +52,22 @@ const Content = () => {
 
                 <ul className={style.organList}>
                     <li>
-                        <img src={schoolIcon} alt='' />
+                        <SchoolIcon fill='#FFBF02' />
                         <h3>학교</h3>
                         <p>가정통신문, 학사일정 안내</p>
                     </li>
                     <li>
-                        <img src={companyIcon} alt='' />
+                        <CompanyIcon />
                         <h3>회사</h3>
                         <p>사내 공지, 정책 안내</p>
                     </li>
                     <li>
-                        <img src={exerciseIcon} alt='' />
+                        <ExerciseIcon />
                         <h3>헬스장</h3>
                         <p>시설 이용, 프로그램 안내</p>
                     </li>
                     <li>
-                        <img src={academyIcon} alt='' />
+                        <AcademyIcon />
                         <h3>학원</h3>
                         <p>수업 일정, 시험 안내</p>
                     </li>

@@ -1,5 +1,5 @@
 import Button from '@/components/buttons/Button.tsx';
-import arrowIcon from '@/assets/icons/arrow_right_black.svg';
+import ArrowIcon from '@/assets/icons/arrow.svg?react';
 import style from './BottomBanner.module.scss';
 
 const BottomBanner = () => {
@@ -9,7 +9,7 @@ const BottomBanner = () => {
             <p className={style.content}>무료로 가입하고 단방향 공지의 편리함을 경험하세요</p>
             <Button type='button' size='sm' bgColor='white' color='black'>
                 무료로 시작하기
-                <img src={arrowIcon} alt='' />
+                <ArrowIcon fill='#000' />
             </Button>
         </section>
     );
