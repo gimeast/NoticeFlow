@@ -42,8 +42,8 @@ public class UserService {
         ConnectionCode connectionCode = connectionCodeRepository.findByCodeAndIsActiveTrue(request.getConnectionCode())
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 연결 코드입니다."));
 
+        user.setRole(UserRole.NORMAL);
         user.setStatus(UserStatus.COMPLETED);
-        // role은 이미 NORMAL로 설정되어 있음
 
         // NormalUser 생성
         NormalUser normalUser = NormalUser.builder()

@@ -54,7 +54,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 .email(email)
                 .name(name)
                 .profileImage(picture)
-                .role(UserRole.NORMAL)
+                .role(UserRole.ANONYMOUS)  // 가입 미완료 상태
                 .status(UserStatus.PENDING)  // 초기 상태: 추가 정보 미입력
                 .provider(provider)
                 .providerId(providerId)
