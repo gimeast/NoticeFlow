@@ -7,6 +7,7 @@ import EtcIcon from '@/assets/icons/etc.svg?react';
 import GoogleIcon from '@/assets/google_white.svg?react';
 import Input from '@/components/inputs/Input.tsx';
 import Button from '@/components/buttons/Button.tsx';
+import OrganTypeItem from '@/components/join/OrganTypeItem.tsx';
 
 const OrganJoin = () => {
     return (
@@ -16,33 +17,21 @@ const OrganJoin = () => {
                 <Link to='/join'>유형 변경</Link>
             </div>
             <span className={style.type}>기관 유형</span>
-            <ul>
-                <li>
-                    <button>
-                        <SchoolIcon width={28} height={28} fill='#747474' />
-                        <span>학교</span>
-                    </button>
-                </li>
-                <li>
-                    <button>
-                        <CompanyIcon width={28} height={28} fill='#747474' />
-                        <span>회사</span>
-                    </button>
-                </li>
-                <li>
-                    <button>
-                        <ExerciseIcon width={28} height={28} fill='#747474' />
-                        <span>헬스장</span>
-                    </button>
-                </li>
-                <li>
-                    <button>
-                        <EtcIcon width={28} height={28} fill='#747474' />
-                        <span>기타</span>
-                    </button>
-                </li>
-            </ul>
             <form>
+                <ul>
+                    <li>
+                        <OrganTypeItem id='school' icon={SchoolIcon} text='학교' />
+                    </li>
+                    <li>
+                        <OrganTypeItem id='company' icon={CompanyIcon} text='회사' />
+                    </li>
+                    <li>
+                        <OrganTypeItem id='health' icon={ExerciseIcon} text='헬스장' />
+                    </li>
+                    <li>
+                        <OrganTypeItem id='etc' icon={EtcIcon} text='기타' />
+                    </li>
+                </ul>
                 <Input
                     type='text'
                     labelText='기관명'

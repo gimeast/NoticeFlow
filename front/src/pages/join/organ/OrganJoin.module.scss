@@ -28,45 +28,54 @@
         margin-top: 3rem;
         font-size: 1.4rem;
     }
-    ul {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
 
-        margin-top: 1rem;
+    form {
+        ul {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
 
-        li {
-            button {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 0.3rem;
+            margin-top: 1rem;
 
-                width: 100%;
-                padding: 1rem 0 1.5rem;
+            li {
+                label {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 0.3rem;
 
-                font-size: 1.2rem;
-                border: 2px solid c.$gray-200;
-                border-radius: 1rem;
-            }
-            button:hover {
-                border-color: c.$yellow-200;
-                background-color: c.$beige-100;
+                    width: 100%;
+                    padding: 1rem 0 1.5rem;
 
-                transition: all 0.3s;
-                svg {
+                    font-size: 1.2rem;
+                    border: 2px solid c.$gray-200;
+                    border-radius: 1rem;
+                }
+                label:hover {
+                    border-color: c.$yellow-200;
+                    background-color: c.$beige-100;
+
                     transition: all 0.3s;
-                    fill: c.$orange;
+                    cursor: pointer;
+                    svg {
+                        transition: all 0.3s;
+                        fill: c.$orange;
+                    }
+                }
+                input[type='radio']:checked + label {
+                    border-color: c.$yellow-200;
+                    background-color: c.$beige-100;
+                    svg {
+                        fill: c.$orange;
+                    }
                 }
             }
         }
-    }
-    form {
         div {
             margin-top: 2rem;
         }
-        button {
+        button[type='submit'] {
             margin-top: 3rem;
         }
     }
