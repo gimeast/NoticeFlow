@@ -19,7 +19,10 @@ const ProtectedRoute = ({ allowedRole, fallbackPath }: ProtectedRouteProps) => {
                 method: 'GET',
                 credentials: 'include',
             })
-                .then(res => res.json())
+                .then(res => {
+                    if (!res.ok) throw new Error('인증 실패');
+                    return res.json();
+                })
                 .then(({ data }) => login(data.email, data.name, data.role))
                 .catch(error => console.error(error))
                 .finally(() => setIsLoading(false));
@@ -27,7 +30,7 @@ const ProtectedRoute = ({ allowedRole, fallbackPath }: ProtectedRouteProps) => {
     }, [isAuth, login]);
 
     if (isLoading) return <div>Loading...</div>;
-    if (isLoading) if (!isAuth) return <Navigate to='/login' replace />;
+    if (!isAuth) return <Navigate to='/login' replace />;
     if (allowedRole && role && allowedRole !== role) return <Navigate to={fallbackPath} replace />;
     return <Outlet />;
 };
