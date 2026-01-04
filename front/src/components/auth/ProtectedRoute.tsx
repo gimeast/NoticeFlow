@@ -3,6 +3,7 @@ import { USER } from '@/api/auth.ts';
 import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router';
 import type { RoleType } from '@/types/authTypes.ts';
+import { apiClient } from '@/api/client.ts';
 
 interface ProtectedRouteProps {
     allowedRole: RoleType;
@@ -15,14 +16,10 @@ const ProtectedRoute = ({ allowedRole, fallbackPath }: ProtectedRouteProps) => {
 
     useEffect(() => {
         if (!isAuth) {
-            fetch(USER, {
+            apiClient(USER, {
                 method: 'GET',
                 credentials: 'include',
             })
-                .then(res => {
-                    if (!res.ok) throw new Error('인증 실패');
-                    return res.json();
-                })
                 .then(({ data }) => login(data.email, data.name, data.role))
                 .catch(error => console.error(error))
                 .finally(() => setIsLoading(false));

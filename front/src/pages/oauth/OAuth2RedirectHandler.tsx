@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { USER } from '@/api/auth.ts';
 import { useNavigate } from 'react-router';
 import authStore from '@/stores/authStore.ts';
+import { apiClient } from '@/api/client.ts';
 
 const OAuth2RedirectHandler = () => {
     const { login } = authStore();
@@ -10,13 +11,10 @@ const OAuth2RedirectHandler = () => {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const res = await fetch(USER, {
+                const { data } = await apiClient(USER, {
                     method: 'GET',
                     credentials: 'include',
                 });
-
-                if (!res.ok) throw new Error('사용자 정보 조회 중 에러 발생');
-                const { data } = await res.json();
 
                 login(data.email, data.name, data.role);
 

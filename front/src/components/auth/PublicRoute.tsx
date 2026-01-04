@@ -2,6 +2,7 @@ import authStore from '@/stores/authStore.ts';
 import { useEffect } from 'react';
 import { USER } from '@/api/auth.ts';
 import { Outlet, useNavigate } from 'react-router';
+import { apiClient } from '@/api/client.ts';
 
 const PublicRoute = () => {
     const { isAuth, login } = authStore();
@@ -11,11 +12,10 @@ const PublicRoute = () => {
         if (isAuth) {
             navigate('/', { replace: true });
         } else {
-            fetch(USER, {
+            apiClient(USER, {
                 method: 'GET',
                 credentials: 'include',
             })
-                .then(res => res.json())
                 .then(({ data }) => login(data.email, data.name, data.role))
                 .catch(error => console.error(error));
         }
