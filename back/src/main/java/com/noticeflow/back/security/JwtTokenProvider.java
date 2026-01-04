@@ -1,5 +1,7 @@
 package com.noticeflow.back.security;
 
+import com.noticeflow.back.exception.AccessTokenExpiredException;
+import com.noticeflow.back.exception.RefreshTokenExpiredException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
@@ -64,6 +66,21 @@ public class JwtTokenProvider {
         return Long.parseLong(claims.getSubject());
     }
 
+    // 만료된 토큰에서도 userId를 추출할 수 있는 메서드
+    public Long getUserIdFromExpiredToken(String token) {
+        try {
+            Claims claims = Jwts.parser()
+                    .verifyWith(secretKey)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+            return Long.parseLong(claims.getSubject());
+        } catch (ExpiredJwtException e) {
+            // 만료된 토큰이라도 Claims는 추출 가능
+            return Long.parseLong(e.getClaims().getSubject());
+        }
+    }
+
     public boolean validateToken(String token) {
         try {
             Jwts.parser()
@@ -71,6 +88,22 @@ public class JwtTokenProvider {
                     .build()
                     .parseSignedClaims(token);
             return true;
+        } catch (ExpiredJwtException e) {
+            throw new AccessTokenExpiredException("액세스 토큰이 만료되었습니다.");
+        } catch (JwtException | IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    public boolean validateRefreshToken(String token) {
+        try {
+            Jwts.parser()
+                    .verifyWith(secretKey)
+                    .build()
+                    .parseSignedClaims(token);
+            return true;
+        } catch (ExpiredJwtException e) {
+            throw new RefreshTokenExpiredException("리프레시 토큰이 만료되었습니다.");
         } catch (JwtException | IllegalArgumentException e) {
             return false;
         }

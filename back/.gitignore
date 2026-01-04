@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### Secret Configuration ###
-application-secret.properties
+application-*.properties
