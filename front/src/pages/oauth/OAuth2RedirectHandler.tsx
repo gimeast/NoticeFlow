@@ -22,6 +22,7 @@ const OAuth2RedirectHandler = () => {
                     navigate('/join');
                 } else {
                     //TODO: 기관사용자, 일반사용자 분기처리 필요
+                    navigate('/dashboard');
                 }
             } catch (error) {
                 console.error(error);

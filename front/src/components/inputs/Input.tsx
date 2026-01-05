@@ -5,13 +5,14 @@ interface InputProps {
     type: 'text' | 'email' | 'password' | 'tel';
     labelText: string;
     id: string;
-    value: string;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    name?: string;
+    value?: string;
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     placeholder: string;
     labelTextSize?: 'sm' | 'md';
 }
 
-const Input = ({ type, labelText, id, value, onChange, placeholder, labelTextSize = 'sm' }: InputProps) => {
+const Input = ({ type, labelText, id, name, value, onChange, placeholder, labelTextSize = 'sm' }: InputProps) => {
     let labelTextSizeStyle = null;
 
     switch (labelTextSize) {
@@ -28,7 +29,7 @@ const Input = ({ type, labelText, id, value, onChange, placeholder, labelTextSiz
             <label className={labelTextSizeStyle} htmlFor={id}>
                 {labelText}
             </label>
-            <input type={type} id={id} value={value} onChange={onChange} placeholder={placeholder} />
+            <input type={type} id={id} name={name} value={value} onChange={onChange} placeholder={placeholder} />
         </div>
     );
 };
