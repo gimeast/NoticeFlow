@@ -22,12 +22,8 @@ public class OrganizationRegistrationRequest {
     @NotBlank(message = "기관명을 입력해주세요")
     private String organizationName;
 
-    @Schema(description = "담당자명", example = "홍길동", required = true)
-    @NotBlank(message = "담당자명을 입력해주세요")
-    private String managerName;
-
-    @Schema(description = "연락처", example = "01012345678", required = true)
-    @NotBlank(message = "연락처를 입력해주세요")
+    @Schema(description = "담당자 연락처", example = "01012345678", required = true)
+    @NotBlank(message = "담당자 연락처를 입력해주세요")
     private String contactNumber;
 
     @Schema(description = "기관 주소", example = "서울시 관악구", required = true)

@@ -34,17 +34,10 @@ public class Organization {
     private String organizationName;
 
     @Column(nullable = false)
-    private String managerName;
-
-    @Column(nullable = false)
-    private String contactNumber;
-
-    @Column(nullable = false)
     private String address;
 
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Builder.Default
-    private List<ConnectionCode> connectionCodes = new ArrayList<>();
+    @OneToOne(mappedBy = "organization", cascade = CascadeType.ALL, orphanRemoval = true)
+    private ConnectionCode connectionCode;
 
     @OneToMany(mappedBy = "organization")
     @Builder.Default

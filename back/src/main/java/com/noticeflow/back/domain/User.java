@@ -6,6 +6,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -26,6 +28,8 @@ public class User {
     @Column(nullable = false)
     private String name;
 
+    private String contactNumber;
+
     private String profileImage;
 
     @Enumerated(EnumType.STRING)
@@ -45,8 +49,9 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Organization organization;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private NormalUser normalUser;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<NormalUser> normalUsers = new ArrayList<>();
 
     @CreationTimestamp
     @Column(updatable = false)

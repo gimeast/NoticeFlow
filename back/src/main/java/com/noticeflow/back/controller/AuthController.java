@@ -123,6 +123,37 @@ public class AuthController {
     }
 
     @Operation(
+            summary = "추가 기관 연결",
+            description = "일반 사용자가 추가 기관에 연결합니다. 기관 연결 코드만 필요합니다.",
+            security = @SecurityRequirement(name = "Bearer Authentication")
+    )
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "200",
+                    description = "성공",
+                    content = @Content(schema = @Schema(implementation = UserResponse.class))
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "400",
+                    description = "유효하지 않은 연결 코드 또는 이미 연결된 기관"
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "401",
+                    description = "인증 실패"
+            )
+    })
+    @PostMapping("/normal/connect")
+    public ResponseEntity<ApiResponse<UserResponse>> joinOrganization(
+            Authentication authentication,
+            @Valid @RequestBody JoinOrganizationRequest request) {
+
+        Long userId = (Long) authentication.getPrincipal();
+        UserResponse user = userService.joinOrganization(userId, request.getConnectionCode());
+
+        return ResponseEntity.ok(ApiResponse.success("기관에 연결되었습니다.", user));
+    }
+
+    @Operation(
             summary = "토큰 갱신",
             description = "백엔드에서 관리하는 리프레시 토큰을 사용하여 새로운 액세스 토큰을 발급받습니다.",
             security = @SecurityRequirement(name = "Bearer Authentication")

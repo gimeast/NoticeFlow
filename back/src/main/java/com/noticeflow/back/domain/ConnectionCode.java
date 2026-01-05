@@ -21,15 +21,12 @@ public class ConnectionCode {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "organization_id", nullable = false)
     private Organization organization;
 
     @Column(nullable = false, unique = true)
     private String code;
-
-    @Column(nullable = false)
-    private String name;
 
     @Column(nullable = false)
     @Builder.Default
