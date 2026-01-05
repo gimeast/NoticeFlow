@@ -41,6 +41,22 @@ public class RefreshTokenService {
         }
     }
 
+    // RTR: 기존 만료 시간을 유지하면서 새로운 리프레시 토큰 발급
+    @Transactional
+    public void rotateRefreshToken(Long userId) {
+        RefreshToken existingToken = refreshTokenRepository.findByUserId(userId)
+                .orElseThrow(() -> new RefreshTokenExpiredException("리프레시 토큰이 존재하지 않습니다."));
+
+        // 기존 만료 시간 유지
+        LocalDateTime existingExpiryDate = existingToken.getExpiryDate();
+
+        // 새로운 리프레시 토큰 생성
+        String newToken = jwtTokenProvider.createRefreshToken(userId);
+
+        // 기존 만료 시간으로 업데이트
+        existingToken.updateToken(newToken, existingExpiryDate);
+    }
+
     @Transactional(readOnly = true)
     public String getRefreshToken(Long userId) {
         RefreshToken refreshToken = refreshTokenRepository.findByUserId(userId)

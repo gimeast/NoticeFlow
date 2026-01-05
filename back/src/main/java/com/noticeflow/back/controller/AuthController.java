@@ -157,6 +157,9 @@ public class AuthController {
                         .body(new ErrorResponse("UNAUTHORIZED", "유효하지 않은 리프레시 토큰입니다.", "REFRESH_TOKEN"));
             }
 
+            // RTR: 새로운 리프레시 토큰 발급 (기존 만료 시간 유지)
+            refreshTokenService.rotateRefreshToken(userId);
+
             // 새로운 액세스 토큰 생성
             UserResponse user = userService.getUserById(userId);
             String newAccessToken = jwtTokenProvider.createAccessToken(userId, user.getEmail());
