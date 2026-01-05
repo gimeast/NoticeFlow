@@ -41,7 +41,7 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(ApiResponse.error("입력값을 확인해주세요."));
+                .body(ApiResponse.error("입력값을 확인해주세요.", errors));
     }
 
     @ExceptionHandler(Exception.class)
