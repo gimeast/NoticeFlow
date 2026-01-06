@@ -1,6 +1,6 @@
 @use '@/styles/variables/colors' as c;
 
-header {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,11 +24,11 @@ header {
     }
 }
 
-main {
+.main {
     border-top: 1px solid c.$gray-200;
 }
 
-footer {
+.footer {
     display: flex;
     justify-content: end;
     align-items: center;
@@ -46,7 +46,7 @@ footer {
 }
 
 @media screen and (min-width: 768px) {
-    header {
+    .header {
         padding: 2rem 5rem;
 
         img {
@@ -63,7 +63,7 @@ footer {
             }
         }
     }
-    footer {
+    .footer {
         justify-content: space-between;
 
         font-size: 1.6rem;
@@ -77,14 +77,14 @@ footer {
 }
 
 @media screen and (min-width: 1024px) {
-    header {
+    .header {
         padding: 2rem 25rem;
 
         img {
             width: 16.3rem;
         }
     }
-    footer {
+    .footer {
         font-size: 1.6rem;
         padding: 5rem 25rem;
 

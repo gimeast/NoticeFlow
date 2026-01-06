@@ -4,18 +4,18 @@ import SearchIcon from '@/assets/icons/search.svg?react';
 
 interface InputProps {
     id: string;
-    label: string;
+    labelText: string;
     value: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     placeholder: string;
 }
 
-const SearchInput = ({ id, label, value, onChange, placeholder }: InputProps) => {
+const SearchInput = ({ id, labelText, value, onChange, placeholder }: InputProps) => {
     return (
         <div className={style.wrapper}>
             <SearchIcon className={style.searchIcon} />
             <label className='sr-only' htmlFor={id}>
-                {label}
+                {labelText}
             </label>
             <input
                 className={`${style.input} ${style.inputWithIcon}`}

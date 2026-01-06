@@ -18,7 +18,7 @@ const Content = () => {
                 <ul className={style.featureList}>
                     <li>
                         <div className={style.imgWrapper}>
-                            <BellIcon />
+                            <BellIcon stroke='#F98C1E' />
                         </div>
                         <h3>단방향 공지</h3>
                         <p>답장 없이 깔끔하게 공지만 전달하세요</p>

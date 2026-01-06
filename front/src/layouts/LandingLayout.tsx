@@ -25,7 +25,7 @@ const LandingLayout = () => {
     };
     return (
         <>
-            <header>
+            <header className={style.header}>
                 <h1>
                     <Link to='/'>
                         <Logo />
@@ -38,10 +38,10 @@ const LandingLayout = () => {
                     </Button>
                 </div>
             </header>
-            <main>
+            <main className={style.main}>
                 <Outlet context={{ handleStart }} />
             </main>
-            <footer>
+            <footer className={style.footer}>
                 <Logo />
                 <small>&copy; 2025 NoticeFlow. All rights reserved.</small>
             </footer>

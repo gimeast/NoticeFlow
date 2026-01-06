@@ -1,0 +1,47 @@
+import { Link, Outlet } from 'react-router';
+import LogoIcon from '@/assets/logoIcon.svg?react';
+import BellIcon from '@/assets/icons/bell.svg?react';
+import SearchInput from '@/components/inputs/SearchInput.tsx';
+import style from './DashboardLayout.module.scss';
+
+const DashboardLayout = () => {
+    return (
+        <>
+            <header className={style.header}>
+                <Link to='/dashboard' className={style.logoLink}>
+                    <LogoIcon />
+                    <div>
+                        <h1>NoticeFlow</h1>
+                        <small>서울고등학교</small>
+                    </div>
+                </Link>
+                <div className={style.inputWrapper}>
+                    <SearchInput
+                        id='search'
+                        labelText='공지 검색'
+                        value=''
+                        placeholder='공지 검색..'
+                        onChange={() => console.log()}
+                    />
+                </div>
+                <div className={style.headerActions}>
+                    <button>
+                        <BellIcon stroke='#000' />
+                    </button>
+                    <div className={style.verticalLine}></div>
+                    <div className={style.userInfoWrapper}>
+                        <div className={style.userInfo}>
+                            <span className={style.userName}>김선생</span>
+                            <span className={style.userRole}>기관 관리자</span>
+                        </div>
+                        <div className={style.userProfile}>김</div>
+                    </div>
+                </div>
+            </header>
+            <aside></aside>
+            <Outlet />
+        </>
+    );
+};
+
+export default DashboardLayout;

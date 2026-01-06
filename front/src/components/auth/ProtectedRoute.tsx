@@ -5,11 +5,11 @@ import type { RoleType } from '@/types/authTypes.ts';
 import { apiClient } from '@/api/client.ts';
 
 interface ProtectedRouteProps {
-    allowedRole: RoleType;
+    allowedRoles: RoleType[];
     fallbackPath: string;
 }
 
-const ProtectedRoute = ({ allowedRole, fallbackPath }: ProtectedRouteProps) => {
+const ProtectedRoute = ({ allowedRoles, fallbackPath }: ProtectedRouteProps) => {
     const [isLoading, setIsLoading] = useState(true);
     const [role, setRole] = useState(null);
 
@@ -25,9 +25,9 @@ const ProtectedRoute = ({ allowedRole, fallbackPath }: ProtectedRouteProps) => {
             .finally(() => setIsLoading(false));
     }, []);
 
-    if (isLoading) return <div>Loading...</div>;
-    if (allowedRole && role && allowedRole !== role) return <Navigate to={fallbackPath} replace />;
-    return <Outlet />;
+    if (isLoading) return null;
+    if (!isLoading && allowedRoles.length > 0 && allowedRoles.includes(role)) return <Outlet />;
+    return <Navigate to={fallbackPath} replace />;
 };
 
 export default ProtectedRoute;
