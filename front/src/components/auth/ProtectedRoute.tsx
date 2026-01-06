@@ -1,4 +1,3 @@
-import authStore from '@/stores/authStore.ts';
 import { USER } from '@/api/auth.ts';
 import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router';
@@ -11,23 +10,22 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute = ({ allowedRole, fallbackPath }: ProtectedRouteProps) => {
-    const { isAuth, role, login } = authStore();
-    const [isLoading, setIsLoading] = useState(!isAuth);
+    const [isLoading, setIsLoading] = useState(true);
+    const [role, setRole] = useState(null);
 
     useEffect(() => {
-        if (!isAuth) {
-            apiClient(USER, {
-                method: 'GET',
-                credentials: 'include',
+        apiClient(USER, {
+            method: 'GET',
+            credentials: 'include',
+        })
+            .then(({ data }) => {
+                setRole(data.role);
             })
-                .then(({ data }) => login(data.email, data.name, data.role))
-                .catch(error => console.error(error))
-                .finally(() => setIsLoading(false));
-        }
-    }, [isAuth, login]);
+            .catch(error => console.error(error))
+            .finally(() => setIsLoading(false));
+    }, []);
 
     if (isLoading) return <div>Loading...</div>;
-    if (!isAuth) return <Navigate to='/login' replace />;
     if (allowedRole && role && allowedRole !== role) return <Navigate to={fallbackPath} replace />;
     return <Outlet />;
 };

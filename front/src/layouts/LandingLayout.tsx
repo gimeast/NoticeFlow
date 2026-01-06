@@ -15,11 +15,8 @@ const LandingLayout = () => {
                 credentials: 'include',
             });
 
-            if (data.role === 'ANONYMOUS') {
-                navigate('/login');
-            } else {
-                navigate('/dashboard');
-            }
+            if (data.role === 'ORGANIZATION' || data.role === 'NORMAL') navigate('/dashboard', { replace: true });
+            else navigate('/login', { replace: true });
         } catch (error) {
             if (error instanceof Error) {
                 navigate('/login');
