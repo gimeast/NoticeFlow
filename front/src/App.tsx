@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
 import Landing from './pages/Landing.tsx';
-import LandingLayout from './layouts/LandingLayout.tsx';
+import LandingLayout from './layouts/landing/LandingLayout.tsx';
 import Login from '@/pages/login/Login.tsx';
 import JoinType from '@/pages/join/JoinType.tsx';
-import JoinLayout from '@/layouts/JoinLayout.tsx';
+import JoinLayout from '@/layouts/join/JoinLayout.tsx';
 import OrganJoin from '@/pages/join/organ/OrganJoin.tsx';
 import OAuth2RedirectHandler from '@/pages/oauth/OAuth2RedirectHandler.tsx';
 import ProtectedRoute from '@/components/auth/ProtectedRoute.tsx';
-import DashboardLayout from '@/layouts/DashboardLayout.tsx';
+import DashboardLayout from '@/layouts/dashboard/DashboardLayout.tsx';
 import Dashboard from '@/pages/dashboard/Dashboard.tsx';
 
 function App() {
