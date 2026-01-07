@@ -10,7 +10,7 @@ const Header = () => {
                 <LogoIcon />
                 <div>
                     <h1>NoticeFlow</h1>
-                    <small>서울고등학교</small>
+                    <span>서울고등학교</span>
                 </div>
             </Link>
             <div className={style.headerActions}>
