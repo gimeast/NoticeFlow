@@ -1,7 +1,7 @@
-import OrganizationSidebar from '@/layouts/dashboard/OrganizationSidebar.tsx';
+import OrganizationSidebar from '@/components/dashboard/sidebar/OrganizationSidebar.tsx';
 import { Outlet } from 'react-router';
-import Header from '@/layouts/dashboard/Header.tsx';
-import NormalSidebar from '@/layouts/dashboard/NormalSidebar.tsx';
+import Header from '@/components/dashboard/header/Header.tsx';
+import NormalSidebar from '@/components/dashboard/sidebar/NormalSidebar.tsx';
 import authStore from '@/stores/authStore.ts';
 import style from './DashboardLayout.module.scss';
 

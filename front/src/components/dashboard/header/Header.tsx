@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 import LogoIcon from '@/assets/logoIcon.svg?react';
 import BellIcon from '@/assets/icons/bell.svg?react';
-import style from './HeaderLayout.module.scss';
+import style from './Header.module.scss';
 
 const Header = () => {
     return (
