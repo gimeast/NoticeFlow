@@ -1,0 +1,66 @@
+@use '@/styles/variables/colors' as c;
+
+.aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 30rem;
+    height: 100%;
+
+    background-color: c.$white;
+    border-right: 1px solid c.$gray-200;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        padding: 3rem;
+
+        li {
+            display: flex;
+            align-items: center;
+
+            width: 24rem;
+            height: 6rem;
+
+            text-align: center;
+            font-weight: 500;
+            font-size: 2rem;
+            color: c.$gray-300;
+
+            a {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                width: 100%;
+                padding: 1.5rem 3rem;
+                border-radius: 1rem;
+            }
+            .active {
+                color: c.$orange;
+                background-color: c.$beige-100;
+            }
+        }
+    }
+
+    .logoutBtnWrapper {
+        width: 100%;
+        height: 9rem;
+        border-top: 1px solid c.$gray-200;
+        padding: 3rem 6rem;
+
+        .logoutBtn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            font-weight: 500;
+            font-size: 2rem;
+            color: c.$gray-300;
+        }
+    }
+}

@@ -39,7 +39,7 @@ const Content = () => {
                     </li>
                     <li>
                         <div className={style.imgWrapper}>
-                            <GroupIcon />
+                            <GroupIcon fill='#F98C1E' />
                         </div>
                         <h3>회원 관리</h3>
                         <p>UUID 키로 간편하게 회원 연동</p>

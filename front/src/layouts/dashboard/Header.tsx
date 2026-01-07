@@ -1,8 +1,8 @@
 import { Link } from 'react-router';
 import LogoIcon from '@/assets/logoIcon.svg?react';
 import BellIcon from '@/assets/icons/bell.svg?react';
-import SearchInput from '@/components/inputs/SearchInput.tsx';
-import style from './DashboardLayout.module.scss';
+import style from './HeaderLayout.module.scss';
+
 const Header = () => {
     return (
         <header className={style.header}>
@@ -13,15 +13,6 @@ const Header = () => {
                     <small>서울고등학교</small>
                 </div>
             </Link>
-            <div className={style.inputWrapper}>
-                <SearchInput
-                    id='search'
-                    labelText='공지 검색'
-                    value=''
-                    placeholder='공지 검색..'
-                    onChange={() => console.log()}
-                />
-            </div>
             <div className={style.headerActions}>
                 <button>
                     <BellIcon stroke='#000' />

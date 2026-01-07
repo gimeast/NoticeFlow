@@ -1,76 +1,21 @@
-@use '@/styles/variables/colors' as c;
+.layout {
+    display: grid;
+    grid-template-areas:
+        'header header'
+        'sidebar main';
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr;
+    height: 100vh;
 
-.header {
-    display: flex;
-    align-items: center;
-
-    min-width: 128rem;
-    height: 8rem;
-    padding: 0 3rem;
-    background-color: c.$white;
-    border-bottom: 1px solid c.$gray-200;
-
-    .logoLink {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-
-        h1 {
-            font-weight: 700;
-            font-size: 2rem;
-        }
-        small {
-            font-size: 1.2rem;
-            color: c.$gray-300;
-        }
+    header {
+        grid-area: header;
     }
-    .inputWrapper {
-        width: 40rem;
-        margin-left: 15.7rem;
+
+    aside {
+        grid-area: sidebar;
     }
-    .headerActions {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
 
-        margin-left: auto;
-
-        .verticalLine {
-            height: 3.7rem;
-            border: 1px solid c.$gray-200;
-        }
-        .userInfoWrapper {
-            display: flex;
-            .userInfo {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: end;
-                gap: 0.5rem;
-
-                span {
-                    display: block;
-                }
-                .userName {
-                    font-size: 1.4rem;
-                }
-                .userRole {
-                    color: c.$gray-300;
-                }
-            }
-            .userProfile {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                margin-left: 1rem;
-                width: 4.2rem;
-                height: 4.2rem;
-                font-size: 2rem;
-                color: c.$white;
-                background-color: c.$orange;
-                border-radius: 1.5rem;
-            }
-        }
+    main {
+        grid-area: main;
     }
 }
