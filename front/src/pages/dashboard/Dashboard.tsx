@@ -1,5 +1,8 @@
-import StatusCard from '@/components/dashboard/StatusCard.tsx';
 import NoticeIcon from '@/assets/icons/notice.svg?react';
+import SendIcon from '@/assets/icons/send.svg?react';
+import GroupIcon from '@/assets/icons/group.svg?react';
+import TemplateIcon from '@/assets/icons/template.svg?react';
+import StatusCard from '@/components/dashboard/StatusCard.tsx';
 import style from './Dashboard.module.scss';
 
 const Dashboard = () => {
@@ -16,21 +19,21 @@ const Dashboard = () => {
                     content='총 공지 수'
                 />
                 <StatusCard
-                    icon={<NoticeIcon fill='#F98C1E' />}
+                    icon={<SendIcon fill='#F98C1E' />}
                     badgeText='이번달'
                     wrapperBgColor='beige-200'
                     amount={24}
                     content='발송된 공지'
                 />
                 <StatusCard
-                    icon={<NoticeIcon fill='#F98C1E' />}
+                    icon={<GroupIcon fill='#F98C1E' />}
                     badgeText='활성'
                     wrapperBgColor='yellow-100'
                     amount={342}
                     content='등록된 사용자'
                 />
                 <StatusCard
-                    icon={<NoticeIcon fill='#F98C1E' />}
+                    icon={<TemplateIcon fill='#F98C1E' />}
                     badgeText='저장됨'
                     wrapperBgColor='beige-200'
                     amount={8}

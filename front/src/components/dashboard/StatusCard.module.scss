@@ -21,6 +21,11 @@
         .iconWrapper {
             padding: 0.6rem;
             border-radius: 1rem;
+
+            svg {
+                width: 3rem;
+                height: 3rem;
+            }
         }
         .badgeWrapper {
             padding: 0.3rem 1rem;
