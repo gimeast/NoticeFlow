@@ -1,3 +1,5 @@
+@use '@/styles/variables/colors' as c;
+
 .title {
     font-weight: 700;
     font-size: 2.4rem;
@@ -10,6 +12,97 @@
 .cardList {
     display: flex;
     gap: 3rem;
+}
+
+.contentsContainer {
+    display: flex;
+    gap: 5rem;
+
+    margin-top: 5rem;
+
+    .noticeContainer {
+        width: 76rem;
+        min-height: 43.7rem;
+
+        background-color: c.$white;
+        border-radius: 2rem;
+
+        .noticeHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 3rem 5rem;
+
+            border-bottom: 1px solid c.$gray-200;
+
+            h3 {
+                font-weight: 700;
+                font-size: 1.6rem;
+            }
+            a {
+                display: flex;
+                align-items: center;
+
+                font-weight: 500;
+                font-size: 1.2rem;
+                color: #f98c1e;
+            }
+        }
+
+        .noticeList {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            padding: 5rem;
+
+            li {
+                display: flex;
+
+                .noticeIconWrapper {
+                    padding: 0.6rem;
+                    background-color: c.$yellow-100;
+                    border-radius: 1rem;
+                }
+                .noticeContent {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    margin-left: 2rem;
+
+                    .noticeTitle {
+                        font-weight: 500;
+                        font-size: 1.2rem;
+                    }
+                    .noticeInfo {
+                        display: flex;
+                        gap: 1rem;
+
+                        font-weight: 500;
+
+                        div {
+                            display: flex;
+                            gap: 0.3rem;
+                            align-items: center;
+                        }
+                    }
+                }
+                span {
+                    height: fit-content;
+
+                    padding: 0.3rem 1.2rem;
+                    margin-left: auto;
+
+                    font-weight: 500;
+                    font-size: 1.2rem;
+                    color: #34a853;
+                    background-color: #c8ffc3;
+                    border-radius: 1rem;
+                }
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 1920px) {
