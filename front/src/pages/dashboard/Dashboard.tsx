@@ -5,6 +5,9 @@ import TemplateIcon from '@/assets/icons/template.svg?react';
 import ArrowIcon from '@/assets/icons/arrow.svg?react';
 import CalendarIcon from '@/assets/icons/calendar.svg?react';
 import PersonIcon from '@/assets/icons/person.svg?react';
+import AddIcon from '@/assets/icons/add.svg?react';
+import KeyIcon from '@/assets/icons/key.svg?react';
+import CopyIcon from '@/assets/icons/copy.svg?react';
 
 import StatusCard from '@/components/dashboard/StatusCard.tsx';
 import style from './Dashboard.module.scss';
@@ -149,28 +152,68 @@ const Dashboard = () => {
                         </li>
                     </ul>
                 </section>
-                <section>
-                    <h3>빠른 작업</h3>
-                    <ul>
+                <section className={style.quickWrapper}>
+                    <h3 className={style.quickTitle}>빠른 작업</h3>
+                    <ul className={style.quickList}>
                         <li>
                             <Link to='/dashboard/notices/new'>
-                                <span>새 공지 작성</span>
-                                <p>공지를 작성하고 발송하세요</p>
+                                <div className={style.iconWrapper}>
+                                    <AddIcon fill='#fff' />
+                                </div>
+                                <div className={style.quickContents}>
+                                    <h4 className={style.quickContentTitle}>새 공지 작성</h4>
+                                    <p>공지를 작성하고 발송하세요</p>
+                                </div>
+                                <div className={style.quickArrow}>
+                                    <ArrowIcon fill='#fff' />
+                                </div>
                             </Link>
                         </li>
                         <li>
                             <Link to='/dashboard/templates'>
-                                <span>템플릿 관리</span>
-                                <p>템플릿을 생성하고 편집하세요</p>
+                                <div className={style.iconWrapper}>
+                                    <TemplateIcon fill='#747474' />
+                                </div>
+                                <div className={style.quickContents}>
+                                    <h4 className={style.quickContentTitle}>템플릿 관리</h4>
+                                    <p>템플릿을 생성하고 편집하세요</p>
+                                </div>
+                                <div className={style.quickArrow}>
+                                    <ArrowIcon fill='#747474' />
+                                </div>
                             </Link>
                         </li>
                         <li>
                             <Link to='/dashboard/users'>
-                                <span>사용자 관리</span>
-                                <p>사용자를 관리하세요</p>
+                                <div className={style.iconWrapper}>
+                                    <GroupIcon fill='#747474' />
+                                </div>
+                                <div className={style.quickContents}>
+                                    <h4 className={style.quickContentTitle}>사용자 관리</h4>
+                                    <p>사용자를 관리하세요</p>
+                                </div>
+                                <div className={style.quickArrow}>
+                                    <ArrowIcon fill='#747474' />
+                                </div>
                             </Link>
                         </li>
                     </ul>
+                    <div className={style.organConnectCodeContainer}>
+                        <div className={style.organConnectCodeWrapper}>
+                            <div className={style.keyIconWrapper}>
+                                <KeyIcon fill='#F98C1E' />
+                            </div>
+                            <div className={style.organConnectCodeBox}>
+                                <h4>기관 연결 코드</h4>
+                                <div className={style.organConnectCodeContent}>
+                                    <p className='ellipsis'>a1b2c3d4-e5f6-7890-abcd-1234567890ef</p>
+                                    <button aria-label='기곤 연결 코드 복사'>
+                                        <CopyIcon fill='#F98C1E' />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
         </>

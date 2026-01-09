@@ -172,6 +172,11 @@ html {
     clip-path: polygon(0 0, 0 0, 0 0); /* inset(50%) 와 동일한 표현 */
     border: 0;
 }
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 .multi-ellipsis {
     overflow: hidden;
     display: -webkit-box;

@@ -53,8 +53,8 @@
         .noticeList {
             display: flex;
             flex-direction: column;
-            gap: 3rem;
-            padding: 5rem;
+            gap: 4rem;
+            padding: 3rem 5rem;
 
             li {
                 display: flex;
@@ -99,6 +99,136 @@
                     color: #34a853;
                     background-color: #c8ffc3;
                     border-radius: 1rem;
+                }
+            }
+        }
+    }
+
+    .quickWrapper {
+        width: 40rem;
+
+        background-color: c.$white;
+        border-radius: 2rem;
+
+        .quickTitle {
+            font-weight: 700;
+            font-size: 1.6rem;
+
+            padding: 3rem 4.2rem;
+            border-bottom: 1px solid c.$gray-200;
+        }
+        .quickList {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            padding: 2rem 4.2rem;
+            border-bottom: 1px solid c.$gray-200;
+
+            li {
+                display: flex;
+
+                border: 1px solid c.$gray-200;
+                border-radius: 1rem;
+
+                a {
+                    display: flex;
+                    align-items: center;
+
+                    width: 100%;
+                    padding: 1.1rem 1.5rem;
+
+                    .iconWrapper {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        padding: 0.7rem;
+
+                        background-color: c.$gray-100;
+                        border-radius: 1rem;
+
+                        svg {
+                            width: 2.4rem;
+                            height: 2.4rem;
+                        }
+                    }
+                    .quickContents {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+
+                        margin-left: 1rem;
+
+                        .quickContentTitle {
+                            font-weight: 700;
+                            font-size: 1.6rem;
+                        }
+                        p {
+                            color: c.$gray-300;
+                        }
+                    }
+                    .quickArrow {
+                        margin-left: auto;
+                    }
+                }
+            }
+            li:first-child {
+                background-color: c.$orange;
+                border: none;
+
+                .iconWrapper {
+                    background-color: #ffffff66;
+                }
+                .quickContents {
+                    .quickContentTitle {
+                        color: c.$white;
+                    }
+                    p {
+                        color: c.$white;
+                    }
+                }
+            }
+        }
+    }
+
+    .organConnectCodeContainer {
+        padding: 2rem 4.2rem;
+        .organConnectCodeWrapper {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            padding: 1.1rem 1.5rem;
+            background-color: #fffcf4;
+            border-radius: 1rem;
+
+            .keyIconWrapper {
+                padding: 0.7rem;
+                background-color: #fff9ab;
+                border-radius: 1rem;
+            }
+            h4 {
+                font-weight: 500;
+                font-size: 1.2rem;
+            }
+            .organConnectCodeBox {
+                display: flex;
+                flex-direction: column;
+                gap: 0.4rem;
+
+                .organConnectCodeContent {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+
+                    p {
+                        max-width: 20.9rem;
+                        padding: 0.4rem 1rem;
+                        text-align: center;
+                        background-color: c.$white;
+                        border: 1px solid #fff9ab;
+                    }
                 }
             }
         }
