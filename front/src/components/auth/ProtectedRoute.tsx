@@ -1,4 +1,4 @@
-import { USER } from '@/api/auth.ts';
+import { USER } from '@/api/endpoints.ts';
 import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router';
 import type { RoleType } from '@/types/authTypes.ts';

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { USER } from '@/api/auth.ts';
+import { USER } from '@/api/endpoints.ts';
 import { useNavigate } from 'react-router';
 import { apiClient } from '@/api/client.ts';
 

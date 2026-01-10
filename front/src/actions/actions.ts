@@ -1,7 +1,7 @@
 'use server';
 
 import { apiClient } from '@/api/client.ts';
-import { ORGANIZATION_REGISTER } from '@/api/auth.ts';
+import { ORGANIZATION_REGISTER } from '@/api/endpoints.ts';
 import type { RoleType, StatusType } from '@/types/authTypes.ts';
 
 interface JoinState {

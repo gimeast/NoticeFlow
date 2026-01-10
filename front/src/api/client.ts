@@ -1,5 +1,5 @@
 import { ApiError } from '@/errors/ApiError.ts';
-import { REFRESH } from '@/api/auth.ts';
+import { REFRESH } from '@/api/endpoints.ts';
 
 interface Options extends RequestInit {
     method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';

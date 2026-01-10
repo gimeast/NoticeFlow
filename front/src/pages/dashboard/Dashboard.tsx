@@ -11,11 +11,14 @@ import CopyIcon from '@/assets/icons/copy.svg?react';
 
 import StatusCard from '@/components/dashboard/StatusCard.tsx';
 import style from './Dashboard.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
+import { getNotices } from '@/api/dashboardApi.ts';
+import type { NoticeListType } from '@/types/dashboardTypes.ts';
 
 const statusCardDummyData = [
     {
+        id: 1,
         icon: <NoticeIcon fill='#F98C1E' />,
         badgeText: '전체',
         amount: 123,
@@ -23,6 +26,7 @@ const statusCardDummyData = [
         wrapperBgColor: 'beige-200' as const,
     },
     {
+        id: 2,
         icon: <SendIcon fill='#F98C1E' />,
         badgeText: '이번달',
         amount: 56,
@@ -30,6 +34,7 @@ const statusCardDummyData = [
         wrapperBgColor: 'yellow-100' as const,
     },
     {
+        id: 3,
         icon: <GroupIcon fill='#F98C1E' />,
         badgeText: '활성',
         amount: 34,
@@ -37,6 +42,7 @@ const statusCardDummyData = [
         wrapperBgColor: 'beige-200' as const,
     },
     {
+        id: 4,
         icon: <TemplateIcon fill='#F98C1E' />,
         badgeText: '저장됨',
         amount: 8,
@@ -45,33 +51,21 @@ const statusCardDummyData = [
     },
 ];
 
-const noticeDummyData = [
-    {
-        title: '2024학년도 1학기 학부모 총회 안내',
-        regDate: '2024-01-15T00:00:00.000Z',
-        personnel: 342,
-    },
-    {
-        title: '겨울방학 특별 프로그램 안내',
-        regDate: '2024-01-12T00:00:00.000Z',
-        personnel: 342,
-    },
-    {
-        title: '1월 급식 식단표 안내',
-        regDate: '2024-01-09T17:00:00.000Z',
-        personnel: 342,
-    },
-    {
-        title: '학교폭력 예방 교육 실시 안내',
-        regDate: '2024-01-08T20:00:00.000Z',
-        personnel: 342,
-    },
-];
-
 const Dashboard = () => {
     const [statusList, setStatusList] = useState(statusCardDummyData);
-    const [noticeList, setNoticeList] = useState(noticeDummyData);
+    const [noticeList, setNoticeList] = useState<NoticeListType[]>([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [noticeData] = await Promise.all([getNotices(0, 4)]);
+                setNoticeList(noticeData.data.content);
+            } catch (error) {
+                console.error(error);
+            }
+        };
 
+        fetchData();
+    }, []);
     return (
         <>
             <h2 className={style.title}>대시보드</h2>
@@ -80,6 +74,7 @@ const Dashboard = () => {
             <section className={style.cardList}>
                 {statusList.map(data => (
                     <StatusCard
+                        key={data.id}
                         icon={data.icon}
                         badgeText={data.badgeText}
                         amount={data.amount}
@@ -99,7 +94,7 @@ const Dashboard = () => {
                     </div>
                     <ul className={style.noticeList}>
                         {noticeList.map(notice => (
-                            <li>
+                            <li key={notice.id}>
                                 <div className={style.noticeIconWrapper}>
                                     <NoticeIcon fill='#F98C1E' />
                                 </div>
@@ -108,7 +103,7 @@ const Dashboard = () => {
                                     <div className={style.noticeInfo}>
                                         <div>
                                             <CalendarIcon fill='#747474' />
-                                            <time>{notice.regDate.split('T')[0]}</time>
+                                            <time>{notice.createdAt.split('T')[0]}</time>
                                         </div>
                                         <div>
                                             <PersonIcon fill='#747474' width={16} height={16} />

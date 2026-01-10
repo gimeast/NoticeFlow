@@ -3,7 +3,7 @@ import Logo from '@/assets/logo.svg?react';
 import style from './LandingLayout.module.scss';
 import Button from '@/components/buttons/Button.tsx';
 import { apiClient } from '@/api/client.ts';
-import { USER } from '@/api/auth.ts';
+import { USER } from '@/api/endpoints.ts';
 
 const LandingLayout = () => {
     const navigate = useNavigate();
