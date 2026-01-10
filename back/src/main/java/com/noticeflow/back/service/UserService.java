@@ -29,6 +29,11 @@ public class UserService {
         return UserResponse.from(user);
     }
 
+    public User getUserEntityById(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+    }
+
     @Transactional
     public UserResponse registerAsNormalUser(Long userId, NormalUserRegistrationRequest request) {
         User user = userRepository.findById(userId)
