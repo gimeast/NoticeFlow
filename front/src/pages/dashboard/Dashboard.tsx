@@ -14,7 +14,7 @@ import style from './Dashboard.module.scss';
 import { useState } from 'react';
 import { Link } from 'react-router';
 
-const dummyData = [
+const statusCardDummyData = [
     {
         icon: <NoticeIcon fill='#F98C1E' />,
         badgeText: '전체',
@@ -45,8 +45,32 @@ const dummyData = [
     },
 ];
 
+const noticeDummyData = [
+    {
+        title: '2024학년도 1학기 학부모 총회 안내',
+        regDate: '2024-01-15T00:00:00.000Z',
+        personnel: 342,
+    },
+    {
+        title: '겨울방학 특별 프로그램 안내',
+        regDate: '2024-01-12T00:00:00.000Z',
+        personnel: 342,
+    },
+    {
+        title: '1월 급식 식단표 안내',
+        regDate: '2024-01-09T17:00:00.000Z',
+        personnel: 342,
+    },
+    {
+        title: '학교폭력 예방 교육 실시 안내',
+        regDate: '2024-01-08T20:00:00.000Z',
+        personnel: 342,
+    },
+];
+
 const Dashboard = () => {
-    const [cardData, setCardData] = useState(dummyData);
+    const [statusList, setStatusList] = useState(statusCardDummyData);
+    const [noticeList, setNoticeList] = useState(noticeDummyData);
 
     return (
         <>
@@ -54,7 +78,7 @@ const Dashboard = () => {
             <p className={style.content}>공지 발송 현황을 한눈에 확인하세요</p>
 
             <section className={style.cardList}>
-                {cardData.map(data => (
+                {statusList.map(data => (
                     <StatusCard
                         icon={data.icon}
                         badgeText={data.badgeText}
@@ -74,82 +98,27 @@ const Dashboard = () => {
                         </Link>
                     </div>
                     <ul className={style.noticeList}>
-                        <li>
-                            <div className={style.noticeIconWrapper}>
-                                <NoticeIcon fill='#F98C1E' />
-                            </div>
-                            <div className={style.noticeContent}>
-                                <p className={style.noticeTitle}>2024학년도 1학기 학부모 총회 안내</p>
-                                <div className={style.noticeInfo}>
-                                    <div>
-                                        <CalendarIcon fill='#747474' />
-                                        <time>2024-01-15</time>
-                                    </div>
-                                    <div>
-                                        <PersonIcon fill='#747474' width={16} height={16} />
-                                        342명
+                        {noticeList.map(notice => (
+                            <li>
+                                <div className={style.noticeIconWrapper}>
+                                    <NoticeIcon fill='#F98C1E' />
+                                </div>
+                                <div className={style.noticeContent}>
+                                    <p className={style.noticeTitle}>{notice.title}</p>
+                                    <div className={style.noticeInfo}>
+                                        <div>
+                                            <CalendarIcon fill='#747474' />
+                                            <time>{notice.regDate.split('T')[0]}</time>
+                                        </div>
+                                        <div>
+                                            <PersonIcon fill='#747474' width={16} height={16} />
+                                            {notice.personnel}명
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <span>발송완료</span>
-                        </li>
-                        <li>
-                            <div className={style.noticeIconWrapper}>
-                                <NoticeIcon fill='#F98C1E' />
-                            </div>
-                            <div className={style.noticeContent}>
-                                <p className={style.noticeTitle}>겨울방학 특별 프로그램 안내</p>
-                                <div className={style.noticeInfo}>
-                                    <div>
-                                        <CalendarIcon fill='#747474' />
-                                        <time>2024-01-12</time>
-                                    </div>
-                                    <div>
-                                        <PersonIcon fill='#747474' width={16} height={16} />
-                                        289명
-                                    </div>
-                                </div>
-                            </div>
-                            <span>발송완료</span>
-                        </li>
-                        <li>
-                            <div className={style.noticeIconWrapper}>
-                                <NoticeIcon fill='#F98C1E' />
-                            </div>
-                            <div className={style.noticeContent}>
-                                <p className={style.noticeTitle}>1월 급식 식단표 안내</p>
-                                <div className={style.noticeInfo}>
-                                    <div>
-                                        <CalendarIcon fill='#747474' />
-                                        <time>2024-01-10</time>
-                                    </div>
-                                    <div>
-                                        <PersonIcon fill='#747474' width={16} height={16} />
-                                        342명
-                                    </div>
-                                </div>
-                            </div>
-                            <span>발송완료</span>
-                        </li>
-                        <li>
-                            <div className={style.noticeIconWrapper}>
-                                <NoticeIcon fill='#F98C1E' />
-                            </div>
-                            <div className={style.noticeContent}>
-                                <p className={style.noticeTitle}>학교폭력 예방 교육 실시 안내</p>
-                                <div className={style.noticeInfo}>
-                                    <div>
-                                        <CalendarIcon fill='#747474' />
-                                        <time>2024-01-08</time>
-                                    </div>
-                                    <div>
-                                        <PersonIcon fill='#747474' width={16} height={16} />
-                                        342명
-                                    </div>
-                                </div>
-                            </div>
-                            <span>발송완료</span>
-                        </li>
+                                <span>발송완료</span>
+                            </li>
+                        ))}
                     </ul>
                 </section>
                 <section className={style.quickWrapper}>
@@ -207,7 +176,7 @@ const Dashboard = () => {
                                 <h4>기관 연결 코드</h4>
                                 <div className={style.organConnectCodeContent}>
                                     <p className='ellipsis'>a1b2c3d4-e5f6-7890-abcd-1234567890ef</p>
-                                    <button aria-label='기곤 연결 코드 복사'>
+                                    <button aria-label='기관 연결 코드 복사'>
                                         <CopyIcon fill='#F98C1E' />
                                     </button>
                                 </div>
