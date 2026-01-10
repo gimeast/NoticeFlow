@@ -14,11 +14,13 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Tag(name = "공지사항 API", description = "공지사항 관리 API")
 @RestController
@@ -66,7 +68,7 @@ public class NoticeController {
 
     @Operation(
             summary = "공지사항 목록 조회",
-            description = "기관의 공지사항 목록을 조회합니다.",
+            description = "기관의 공지사항 목록을 페이징으로 조회합니다. 기본값: page=0, size=10, sort=createdAt,desc",
             security = @SecurityRequirement(name = "Bearer Authentication")
     )
     @ApiResponses({
@@ -81,11 +83,13 @@ public class NoticeController {
             )
     })
     @GetMapping
-    public ResponseEntity<ApiResponse<List<NoticeResponse>>> getNotices(Authentication authentication) {
+    public ResponseEntity<ApiResponse<Page<NoticeResponse>>> getNotices(
+            Authentication authentication,
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
         Long userId = (Long) authentication.getPrincipal();
         User user = userService.getUserEntityById(userId);
 
-        List<NoticeResponse> notices = noticeService.getNotices(user);
+        Page<NoticeResponse> notices = noticeService.getNotices(user, pageable);
         return ResponseEntity.ok(ApiResponse.success(notices));
     }
 

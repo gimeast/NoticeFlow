@@ -7,6 +7,8 @@ import com.noticeflow.back.repository.CategoryRepository;
 import com.noticeflow.back.repository.NoticeRepository;
 import com.noticeflow.back.repository.TemplateRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,16 +73,14 @@ public class NoticeService {
         return NoticeResponse.from(notice);
     }
 
-    public List<NoticeResponse> getNotices(User user) {
+    public Page<NoticeResponse> getNotices(User user, Pageable pageable) {
         Organization organization = user.getOrganization();
         if (organization == null) {
             throw new IllegalStateException("기관 정보가 없습니다");
         }
 
-        List<Notice> notices = noticeRepository.findByOrganizationOrderByCreatedAtDesc(organization);
-        return notices.stream()
-                .map(NoticeResponse::from)
-                .collect(Collectors.toList());
+        Page<Notice> notices = noticeRepository.findByOrganizationOrderByCreatedAtDesc(organization, pageable);
+        return notices.map(NoticeResponse::from);
     }
 
     public NoticeResponse getNotice(User user, Long noticeId) {
