@@ -9,6 +9,7 @@ import OAuth2RedirectHandler from '@/pages/oauth/OAuth2RedirectHandler.tsx';
 import ProtectedRoute from '@/components/auth/ProtectedRoute.tsx';
 import DashboardLayout from '@/layouts/dashboard/DashboardLayout.tsx';
 import Dashboard from '@/pages/dashboard/Dashboard.tsx';
+import { dashboardStatusData } from '@/api/dashboard/dashboardApi.ts';
 
 function App() {
     const router = createBrowserRouter([
@@ -44,7 +45,12 @@ function App() {
         },
         {
             element: <ProtectedRoute allowedRoles={['ORGANIZATION', 'NORMAL']} fallbackPath='/' />,
-            children: [{ element: <DashboardLayout />, children: [{ path: '/dashboard', element: <Dashboard /> }] }],
+            children: [
+                {
+                    element: <DashboardLayout />,
+                    children: [{ path: '/dashboard', element: <Dashboard />, loader: dashboardStatusData }],
+                },
+            ],
         },
     ]);
     return <RouterProvider router={router} />;

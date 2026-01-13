@@ -11,17 +11,15 @@ import CopyIcon from '@/assets/icons/copy.svg?react';
 
 import StatusCard from '@/components/dashboard/StatusCard.tsx';
 import style from './Dashboard.module.scss';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
-import { getNotices } from '@/api/dashboardApi.ts';
+import { Link, useLoaderData } from 'react-router';
 import type { NoticeListType } from '@/types/dashboardTypes.ts';
 
-const statusCardDummyData = [
+const statusCardTemplate = [
     {
         id: 1,
         icon: <NoticeIcon fill='#F98C1E' />,
         badgeText: '전체',
-        amount: 123,
+        amount: 0,
         content: '총 공지 수',
         wrapperBgColor: 'beige-200' as const,
     },
@@ -29,7 +27,7 @@ const statusCardDummyData = [
         id: 2,
         icon: <SendIcon fill='#F98C1E' />,
         badgeText: '이번달',
-        amount: 56,
+        amount: 0,
         content: '발송된 공지',
         wrapperBgColor: 'yellow-100' as const,
     },
@@ -37,7 +35,7 @@ const statusCardDummyData = [
         id: 3,
         icon: <GroupIcon fill='#F98C1E' />,
         badgeText: '활성',
-        amount: 34,
+        amount: 0,
         content: '등록된 사용자',
         wrapperBgColor: 'beige-200' as const,
     },
@@ -45,27 +43,16 @@ const statusCardDummyData = [
         id: 4,
         icon: <TemplateIcon fill='#F98C1E' />,
         badgeText: '저장됨',
-        amount: 8,
+        amount: 0,
         content: '템플릿',
         wrapperBgColor: 'yellow-100' as const,
     },
 ];
 
 const Dashboard = () => {
-    const [statusList, setStatusList] = useState(statusCardDummyData);
-    const [noticeList, setNoticeList] = useState<NoticeListType[]>([]);
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const [noticeData] = await Promise.all([getNotices(0, 4)]);
-                setNoticeList(noticeData.data.content);
-            } catch (error) {
-                console.error(error);
-            }
-        };
+    const { noticeList, amounts } = useLoaderData();
+    const statusList = statusCardTemplate.map((data, idx) => ({ ...data, amount: amounts[idx] }));
 
-        fetchData();
-    }, []);
     return (
         <>
             <h2 className={style.title}>대시보드</h2>
@@ -93,7 +80,7 @@ const Dashboard = () => {
                         </Link>
                     </div>
                     <ul className={style.noticeList}>
-                        {noticeList.map(notice => (
+                        {noticeList.map((notice: NoticeListType) => (
                             <li key={notice.id}>
                                 <div className={style.noticeIconWrapper}>
                                     <NoticeIcon fill='#F98C1E' />
