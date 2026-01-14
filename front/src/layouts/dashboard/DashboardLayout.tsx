@@ -12,7 +12,7 @@ const DashboardLayout = () => {
             <Header />
             {role === 'ORGANIZATION' && <OrganizationSidebar />}
             {role === 'NORMAL' && <NormalSidebar />}
-            <main className={style.main}>
+            <main>
                 <Outlet />
             </main>
         </div>
