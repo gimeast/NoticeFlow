@@ -18,4 +18,6 @@ public interface NoticeRepository extends JpaRepository<Notice, Long> {
     List<Notice> findByOrganizationOrderByCreatedAtDesc(Organization organization);
 
     boolean existsByCategory(Category category);
+
+    Long countByOrganization(Organization organization);
 }
