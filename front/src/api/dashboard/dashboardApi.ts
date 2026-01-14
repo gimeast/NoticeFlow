@@ -1,14 +1,9 @@
-import { getNotices } from '@/api/dashboardApi.ts';
-
-//todo: 더미데이터
-function getAmounts() {
-    return [1, 1, 3, 8];
-}
+import { getCounts, getNotices } from '@/api/dashboardApi.ts';
 
 export const dashboardStatusData = async () => {
     try {
-        const [noticeData, amounts] = await Promise.all([getNotices(0, 4), getAmounts()]);
-        return { noticeList: noticeData.data.content, amounts };
+        const [noticeData, counts] = await Promise.all([getNotices(0, 4), getCounts()]);
+        return { noticeList: noticeData.data.content, counts: counts.data };
     } catch (error) {
         console.error(error);
     }

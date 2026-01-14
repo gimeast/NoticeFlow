@@ -48,7 +48,13 @@ function App() {
             children: [
                 {
                     element: <DashboardLayout />,
-                    children: [{ path: '/dashboard', element: <Dashboard />, loader: dashboardStatusData }],
+                    children: [
+                        {
+                            path: '/dashboard',
+                            element: <Dashboard />,
+                            loader: dashboardStatusData,
+                        },
+                    ],
                 },
             ],
         },

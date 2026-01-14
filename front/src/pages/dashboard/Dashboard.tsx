@@ -16,43 +16,42 @@ import type { NoticeListType } from '@/types/dashboardTypes.ts';
 
 const statusCardTemplate = [
     {
-        id: 1,
+        id: 'totalNotices',
         icon: <NoticeIcon fill='#F98C1E' />,
         badgeText: '전체',
-        amount: 0,
+        count: 0,
         content: '총 공지 수',
         wrapperBgColor: 'beige-200' as const,
     },
     {
-        id: 2,
+        id: 'sentNotices',
         icon: <SendIcon fill='#F98C1E' />,
         badgeText: '이번달',
-        amount: 0,
+        count: 0,
         content: '발송된 공지',
         wrapperBgColor: 'yellow-100' as const,
     },
     {
-        id: 3,
+        id: 'registeredUsers',
         icon: <GroupIcon fill='#F98C1E' />,
         badgeText: '활성',
-        amount: 0,
+        count: 0,
         content: '등록된 사용자',
         wrapperBgColor: 'beige-200' as const,
     },
     {
-        id: 4,
+        id: 'templates',
         icon: <TemplateIcon fill='#F98C1E' />,
         badgeText: '저장됨',
-        amount: 0,
+        count: 0,
         content: '템플릿',
         wrapperBgColor: 'yellow-100' as const,
     },
 ];
 
 const Dashboard = () => {
-    const { noticeList, amounts } = useLoaderData();
-    const statusList = statusCardTemplate.map((data, idx) => ({ ...data, amount: amounts[idx] }));
-
+    const { noticeList, counts } = useLoaderData();
+    const statusList = statusCardTemplate.map(data => ({ ...data, count: counts[data.id].count }));
     return (
         <>
             <h2 className={style.title}>대시보드</h2>
@@ -64,7 +63,7 @@ const Dashboard = () => {
                         key={data.id}
                         icon={data.icon}
                         badgeText={data.badgeText}
-                        amount={data.amount}
+                        count={data.count}
                         content={data.content}
                         wrapperBgColor={data.wrapperBgColor}
                     />

@@ -5,11 +5,11 @@ interface StatusCardProps {
     icon: React.ReactNode;
     badgeText?: string;
     wrapperBgColor: 'yellow-100' | 'beige-200';
-    amount: number;
+    count: number;
     content: string;
 }
 
-const StatusCard = ({ icon, badgeText, wrapperBgColor, amount, content }: StatusCardProps) => {
+const StatusCard = ({ icon, badgeText, wrapperBgColor, count, content }: StatusCardProps) => {
     let bgColor = null;
 
     switch (wrapperBgColor) {
@@ -26,7 +26,7 @@ const StatusCard = ({ icon, badgeText, wrapperBgColor, amount, content }: Status
                 <div className={`${style.iconWrapper} ${bgColor}`}>{icon}</div>
                 {badgeText && <span className={`${style.badgeWrapper} ${bgColor}`}>{badgeText}</span>}
             </div>
-            <strong className={style.count}>{amount}</strong>
+            <strong className={style.count}>{count}</strong>
             <p className={style.content}>{content}</p>
         </article>
     );
