@@ -10,6 +10,8 @@ import ProtectedRoute from '@/components/auth/ProtectedRoute.tsx';
 import DashboardLayout from '@/layouts/dashboard/DashboardLayout.tsx';
 import Dashboard from '@/pages/organization/dashboard/Dashboard.tsx';
 import { dashboardStatusData } from '@/api/dashboard/dashboardApi.ts';
+import Notices from '@/pages/organization/dashboard/notices/Notices.tsx';
+import { getNotices } from '@/api/dashboardApi.ts';
 
 function App() {
     const router = createBrowserRouter([
@@ -54,6 +56,11 @@ function App() {
                             index: true,
                             element: <Dashboard />,
                             loader: dashboardStatusData,
+                        },
+                        {
+                            path: 'notices',
+                            element: <Notices />,
+                            loader: async () => await getNotices(0, 4),
                         },
                     ],
                 },

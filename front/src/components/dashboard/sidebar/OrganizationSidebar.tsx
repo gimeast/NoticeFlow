@@ -11,7 +11,7 @@ import LogoutIcon from '@/assets/icons/logout.svg?react';
 const OrganizationSidebar = () => {
     return (
         <aside className={style.aside}>
-            <nav>
+            <nav aria-label='메인 메뉴'>
                 <ul>
                     <li>
                         <NavLink to='/dashboard' end className={({ isActive }) => (isActive ? style.active : '')}>

@@ -1,7 +1,7 @@
 const OrganizationSidebar = () => {
     return (
         <aside>
-            <nav>
+            <nav aria-label='메인 메뉴'>
                 <ul>
                     <li></li>
                 </ul>
