@@ -8,7 +8,7 @@ import OrganJoin from '@/pages/join/organ/OrganJoin.tsx';
 import OAuth2RedirectHandler from '@/pages/oauth/OAuth2RedirectHandler.tsx';
 import ProtectedRoute from '@/components/auth/ProtectedRoute.tsx';
 import DashboardLayout from '@/layouts/dashboard/DashboardLayout.tsx';
-import Dashboard from '@/pages/dashboard/Dashboard.tsx';
+import Dashboard from '@/pages/organization/dashboard/Dashboard.tsx';
 import { dashboardStatusData } from '@/api/dashboard/dashboardApi.ts';
 
 function App() {
@@ -44,13 +44,14 @@ function App() {
             ],
         },
         {
+            path: '/dashboard',
             element: <ProtectedRoute allowedRoles={['ORGANIZATION', 'NORMAL']} fallbackPath='/' />,
             children: [
                 {
                     element: <DashboardLayout />,
                     children: [
                         {
-                            path: '/dashboard',
+                            index: true,
                             element: <Dashboard />,
                             loader: dashboardStatusData,
                         },
