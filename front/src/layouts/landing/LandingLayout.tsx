@@ -33,7 +33,7 @@ const LandingLayout = () => {
                 </h1>
                 <div className={style.headerButtonGroup}>
                     <Link to='/login'>로그인</Link>
-                    <Button type='button' size='sm' bgColor='orange' color='white' onClick={handleStart}>
+                    <Button type='button' size='md' bgColor='orange' color='white' onClick={handleStart}>
                         시작하기
                     </Button>
                 </div>

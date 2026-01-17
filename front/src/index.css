@@ -142,6 +142,7 @@ button {
     padding: 0;
     background: none;
     cursor: pointer;
+    font: inherit;
 }
 a {
     color: inherit;
@@ -187,5 +188,5 @@ html {
 body {
     background-color: #f8f7f8;
     font-family: 'Noto Sans KR', sans-serif;
-    line-height: 1.2;
+    -webkit-font-smoothing: antialiased;
 }

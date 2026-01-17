@@ -6,7 +6,7 @@ interface ButtonProps {
     type: 'button' | 'submit';
     size?: 'sm' | 'md' | 'full';
     color?: 'white' | 'gray' | 'black';
-    bgColor?: 'white' | 'orange';
+    bgColor?: 'white' | 'orange' | 'gray';
     border?: 1 | 2;
     borderColor?: 'gray-200' | 'gray-300';
     disabled?: boolean;
@@ -57,6 +57,9 @@ const Button = ({
             break;
         case 'orange':
             bgStyle = style.bgOrange;
+            break;
+        case 'gray':
+            colorStyle = style.bgGray;
             break;
     }
 

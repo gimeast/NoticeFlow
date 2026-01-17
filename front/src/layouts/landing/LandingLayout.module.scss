@@ -17,8 +17,7 @@
         align-items: center;
         gap: 2rem;
 
-        a,
-        button {
+        a {
             font-size: 1.2rem;
         }
     }
@@ -53,12 +52,9 @@
             width: 14.5rem;
         }
         .headerButtonGroup {
-            display: flex;
-            align-items: center;
             gap: 4rem;
 
-            a,
-            button {
+            a {
                 font-size: 1.6rem;
             }
         }

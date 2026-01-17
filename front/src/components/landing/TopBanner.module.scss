@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
 
-    padding: 3rem 0;
+    padding: 5rem 0;
 
     background-color: c.$beige-100;
     text-align: center;
@@ -21,9 +21,13 @@
         font-size: 1.2rem;
         background-color: c.$beige-200;
 
+        svg {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         span {
             color: c.$orange;
-            padding-top: 0.3rem;
         }
     }
 
@@ -48,15 +52,11 @@
 
 @media screen and (min-width: 768px) {
     .topBanner {
-        padding: 5rem 0;
-
         .badge {
             padding: 0.8rem 1.6rem;
 
-            font-size: 1.6rem;
-
             span {
-                padding-top: 0.3rem;
+                font-size: 1.6rem;
             }
         }
 

@@ -8,16 +8,16 @@
     border-radius: 1rem;
 
     font-weight: 400;
-    line-height: 1;
+    line-height: 1.2;
 }
 
 .smSize {
-    font-size: 1.6rem;
-    padding: 1rem 2rem;
+    font-size: 1.4rem;
+    padding: 0.7rem 1.5rem;
 }
 .mdSize {
-    font-size: 2rem;
-    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    padding: 0.7rem 1.5rem;
 }
 .fullSize {
     width: 100%;
@@ -40,6 +40,9 @@
 }
 .bgOrange {
     background-color: c.$orange;
+}
+.bgGray {
+    background-color: c.$gray-100;
 }
 
 .smBorder {

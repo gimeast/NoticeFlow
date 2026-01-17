@@ -20,7 +20,7 @@ const TopBanner = () => {
                 카카오톡, 라인의 양방향 소통이 불편하셨나요? <br />
                 NoticeFlow로 가정통신문, 회사 공지를 PDF로 깔끔하게 전달하세요.
             </p>
-            <Button type='button' size='sm' bgColor='orange' color='white' onClick={handleStart}>
+            <Button type='button' size='md' bgColor='orange' color='white' onClick={handleStart}>
                 무료로 시작하기
                 <ArrowIcon fill='#fff' />
             </Button>
