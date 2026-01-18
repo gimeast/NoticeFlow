@@ -7,6 +7,7 @@ import com.noticeflow.back.dto.NoticeResponse;
 import com.noticeflow.back.service.NoticeService;
 import com.noticeflow.back.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -15,9 +16,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -68,7 +69,7 @@ public class NoticeController {
 
     @Operation(
             summary = "공지사항 목록 조회",
-            description = "기관의 공지사항 목록을 페이징으로 조회합니다. 기본값: page=0, size=10, sort=createdAt,desc. includeContent=true로 설정하면 본문 내용도 함께 반환됩니다.",
+            description = "기관의 공지사항 목록을 페이징으로 조회합니다. 기본값: page=0, size=10, sort=createdAt,desc. includeContent=true로 설정하면 본문 내용도 함께 반환됩니다. keyword로 제목/내용 검색이 가능합니다.",
             security = @SecurityRequirement(name = "Bearer Authentication")
     )
     @ApiResponses({
@@ -85,12 +86,27 @@ public class NoticeController {
     @GetMapping
     public ResponseEntity<ApiResponse<Page<NoticeResponse>>> getNotices(
             Authentication authentication,
-            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
-            @RequestParam(defaultValue = "false") boolean includeContent) {
+            @Parameter(description = "페이지 번호 (0부터 시작)", example = "0")
+            @RequestParam(defaultValue = "0") int page,
+            @Parameter(description = "페이지 크기", example = "10")
+            @RequestParam(defaultValue = "10") int size,
+            @Parameter(description = "정렬 (예: createdAt,desc 또는 title,asc)", example = "createdAt,desc")
+            @RequestParam(defaultValue = "createdAt,desc") String sort,
+            @Parameter(description = "본문 내용 포함 여부")
+            @RequestParam(defaultValue = "false") boolean includeContent,
+            @Parameter(description = "검색 키워드 (제목, 내용에서 검색)")
+            @RequestParam(required = false) String keyword) {
         Long userId = (Long) authentication.getPrincipal();
         User user = userService.getUserEntityById(userId);
 
-        Page<NoticeResponse> notices = noticeService.getNotices(user, pageable, includeContent);
+        // sort 파라미터 파싱 (예: "createdAt,desc")
+        String[] sortParams = sort.split(",");
+        String sortField = sortParams[0];
+        Sort.Direction direction = sortParams.length > 1 && sortParams[1].equalsIgnoreCase("asc")
+                ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortField));
+
+        Page<NoticeResponse> notices = noticeService.getNotices(user, pageable, includeContent, keyword);
         return ResponseEntity.ok(ApiResponse.success(notices));
     }
 

@@ -6,14 +6,20 @@ import com.noticeflow.back.domain.Organization;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface NoticeRepository extends JpaRepository<Notice, Long> {
+public interface NoticeRepository extends JpaRepository<Notice, Long>, JpaSpecificationExecutor<Notice> {
 
-    Page<Notice> findByOrganizationOrderByCreatedAtDesc(Organization organization, Pageable pageable);
+    Page<Notice> findByOrganization(Organization organization, Pageable pageable);
+
+    Page<Notice> findByOrganizationAndTitleContainingOrOrganizationAndContentContaining(
+            Organization org1, String titleKeyword,
+            Organization org2, String contentKeyword,
+            Pageable pageable);
 
     List<Notice> findByOrganizationOrderByCreatedAtDesc(Organization organization);
 

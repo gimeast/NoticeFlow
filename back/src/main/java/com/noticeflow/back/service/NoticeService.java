@@ -73,13 +73,19 @@ public class NoticeService {
         return NoticeResponse.from(notice);
     }
 
-    public Page<NoticeResponse> getNotices(User user, Pageable pageable, boolean includeContent) {
+    public Page<NoticeResponse> getNotices(User user, Pageable pageable, boolean includeContent, String keyword) {
         Organization organization = user.getOrganization();
         if (organization == null) {
             throw new IllegalStateException("기관 정보가 없습니다");
         }
 
-        Page<Notice> notices = noticeRepository.findByOrganizationOrderByCreatedAtDesc(organization, pageable);
+        Page<Notice> notices;
+        if (keyword == null || keyword.isBlank()) {
+            notices = noticeRepository.findByOrganization(organization, pageable);
+        } else {
+            notices = noticeRepository.findByOrganizationAndTitleContainingOrOrganizationAndContentContaining(
+                    organization, keyword, organization, keyword, pageable);
+        }
         return notices.map(notice -> NoticeResponse.from(notice, includeContent));
     }
 
