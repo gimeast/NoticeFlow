@@ -73,14 +73,14 @@ public class NoticeService {
         return NoticeResponse.from(notice);
     }
 
-    public Page<NoticeResponse> getNotices(User user, Pageable pageable) {
+    public Page<NoticeResponse> getNotices(User user, Pageable pageable, boolean includeContent) {
         Organization organization = user.getOrganization();
         if (organization == null) {
             throw new IllegalStateException("기관 정보가 없습니다");
         }
 
         Page<Notice> notices = noticeRepository.findByOrganizationOrderByCreatedAtDesc(organization, pageable);
-        return notices.map(NoticeResponse::from);
+        return notices.map(notice -> NoticeResponse.from(notice, includeContent));
     }
 
     public NoticeResponse getNotice(User user, Long noticeId) {
@@ -96,7 +96,7 @@ public class NoticeService {
             throw new IllegalStateException("접근 권한이 없습니다");
         }
 
-        return NoticeResponse.from(notice);
+        return NoticeResponse.from(notice, true);
     }
 
     /**

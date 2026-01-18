@@ -68,7 +68,7 @@ public class NoticeController {
 
     @Operation(
             summary = "공지사항 목록 조회",
-            description = "기관의 공지사항 목록을 페이징으로 조회합니다. 기본값: page=0, size=10, sort=createdAt,desc",
+            description = "기관의 공지사항 목록을 페이징으로 조회합니다. 기본값: page=0, size=10, sort=createdAt,desc. includeContent=true로 설정하면 본문 내용도 함께 반환됩니다.",
             security = @SecurityRequirement(name = "Bearer Authentication")
     )
     @ApiResponses({
@@ -85,11 +85,12 @@ public class NoticeController {
     @GetMapping
     public ResponseEntity<ApiResponse<Page<NoticeResponse>>> getNotices(
             Authentication authentication,
-            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
+            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
+            @RequestParam(defaultValue = "false") boolean includeContent) {
         Long userId = (Long) authentication.getPrincipal();
         User user = userService.getUserEntityById(userId);
 
-        Page<NoticeResponse> notices = noticeService.getNotices(user, pageable);
+        Page<NoticeResponse> notices = noticeService.getNotices(user, pageable, includeContent);
         return ResponseEntity.ok(ApiResponse.success(notices));
     }
 
