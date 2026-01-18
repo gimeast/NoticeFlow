@@ -60,7 +60,7 @@ function App() {
                         {
                             path: 'notices',
                             element: <Notices />,
-                            loader: async () => await getNotices(0, 4),
+                            loader: async () => await getNotices(0, 4, true),
                         },
                     ],
                 },

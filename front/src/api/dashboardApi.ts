@@ -1,12 +1,15 @@
 import { apiClient } from '@/api/client.ts';
 import { DASHBOARD_COUNTS, NOTICES } from '@/api/endpoints.ts';
 
-export const getNotices = async (page: number, size: number) => {
+export const getNotices = async (page: number, size: number, includeContent?: boolean) => {
     try {
-        const result = await apiClient(`${NOTICES}?page=${page}&size=${size}`, {
-            method: 'GET',
-            credentials: 'include',
-        });
+        const result = await apiClient(
+            `${NOTICES}?page=${page}&size=${size}${includeContent && `&includeContent=${includeContent}`}`,
+            {
+                method: 'GET',
+                credentials: 'include',
+            }
+        );
 
         return result;
     } catch (error) {

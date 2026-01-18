@@ -1,0 +1,42 @@
+@use '@/styles/variables/colors' as c;
+
+.paginationContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    padding: 2rem 5rem;
+
+    .pageInfo {
+        font-weight: 400;
+        font-size: 1.6rem;
+        span {
+            font-weight: 700;
+        }
+    }
+
+    .paginationWrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+
+            font-weight: 700;
+            font-size: 2rem;
+
+            li {
+                padding: 1rem 1.6rem;
+                border-radius: 1rem;
+            }
+            li.active {
+                background-color: c.$orange;
+                color: c.$white;
+            }
+        }
+    }
+}
