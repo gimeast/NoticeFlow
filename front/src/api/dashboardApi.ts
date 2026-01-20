@@ -4,7 +4,7 @@ import { DASHBOARD_COUNTS, NOTICES } from '@/api/endpoints.ts';
 export const getNotices = async (page: number, size: number, includeContent?: boolean) => {
     try {
         const result = await apiClient(
-            `${NOTICES}?page=${page}&size=${size}${includeContent && `&includeContent=${includeContent}`}`,
+            `${NOTICES}?page=${page}&size=${size}${includeContent ? `&includeContent=${includeContent}` : ''}`,
             {
                 method: 'GET',
                 credentials: 'include',
