@@ -62,7 +62,7 @@ public class CategoryController {
 
     @Operation(
             summary = "카테고리 목록 조회",
-            description = "기관의 카테고리 목록을 조회합니다. includeHidden=true로 설정하면 숨겨진 카테고리도 조회됩니다.",
+            description = "사용자가 속한 기관의 카테고리 목록을 조회합니다. 기관 관리자는 자신의 기관, 구독자는 연결된 기관의 카테고리를 조회합니다. includeHidden=true는 기관 관리자만 사용 가능합니다.",
             security = @SecurityRequirement(name = "Bearer Authentication")
     )
     @ApiResponses({

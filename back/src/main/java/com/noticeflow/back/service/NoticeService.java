@@ -73,20 +73,46 @@ public class NoticeService {
         return NoticeResponse.from(notice);
     }
 
-    public Page<NoticeResponse> getNotices(User user, Pageable pageable, boolean includeContent, String keyword) {
-        Organization organization = user.getOrganization();
-        if (organization == null) {
-            throw new IllegalStateException("기관 정보가 없습니다");
+    public Page<NoticeResponse> getNotices(User user, Pageable pageable, boolean includeContent, String keyword, Long categoryId) {
+        Organization organization = getOrganizationByUser(user);
+
+        // 카테고리 검증 (categoryId가 있는 경우)
+        Category category = null;
+        if (categoryId != null) {
+            category = categoryRepository.findByIdAndOrganization(categoryId, organization)
+                    .orElseThrow(() -> new IllegalArgumentException("카테고리를 찾을 수 없습니다"));
         }
 
         Page<Notice> notices;
-        if (keyword == null || keyword.isBlank()) {
-            notices = noticeRepository.findByOrganization(organization, pageable);
-        } else {
+        boolean hasKeyword = keyword != null && !keyword.isBlank();
+        boolean hasCategory = category != null;
+
+        if (hasCategory && hasKeyword) {
+            notices = noticeRepository.findByOrganizationAndCategoryAndKeyword(organization, category, keyword, pageable);
+        } else if (hasCategory) {
+            notices = noticeRepository.findByOrganizationAndCategory(organization, category, pageable);
+        } else if (hasKeyword) {
             notices = noticeRepository.findByOrganizationAndTitleContainingOrOrganizationAndContentContaining(
                     organization, keyword, organization, keyword, pageable);
+        } else {
+            notices = noticeRepository.findByOrganization(organization, pageable);
         }
+
         return notices.map(notice -> NoticeResponse.from(notice, includeContent));
+    }
+
+    private Organization getOrganizationByUser(User user) {
+        if (user.getRole() == UserRole.ORGANIZATION) {
+            if (user.getOrganization() == null) {
+                throw new IllegalStateException("기관 정보가 없습니다");
+            }
+            return user.getOrganization();
+        } else {
+            if (user.getNormalUsers() == null || user.getNormalUsers().isEmpty()) {
+                throw new IllegalStateException("연결된 기관이 없습니다");
+            }
+            return user.getNormalUsers().get(0).getOrganization();
+        }
     }
 
     public NoticeResponse getNotice(User user, Long noticeId) {

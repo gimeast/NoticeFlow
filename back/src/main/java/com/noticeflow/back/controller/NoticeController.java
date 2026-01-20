@@ -69,7 +69,7 @@ public class NoticeController {
 
     @Operation(
             summary = "공지사항 목록 조회",
-            description = "기관의 공지사항 목록을 페이징으로 조회합니다. 기본값: page=0, size=10, sort=createdAt,desc. includeContent=true로 설정하면 본문 내용도 함께 반환됩니다. keyword로 제목/내용 검색이 가능합니다.",
+            description = "기관의 공지사항 목록을 페이징으로 조회합니다. 기본값: page=0, size=10, sort=createdAt,desc. includeContent=true로 설정하면 본문 내용도 함께 반환됩니다. keyword로 제목/내용 검색, categoryId로 카테고리 필터링이 가능합니다.",
             security = @SecurityRequirement(name = "Bearer Authentication")
     )
     @ApiResponses({
@@ -95,7 +95,9 @@ public class NoticeController {
             @Parameter(description = "본문 내용 포함 여부")
             @RequestParam(defaultValue = "false") boolean includeContent,
             @Parameter(description = "검색 키워드 (제목, 내용에서 검색)")
-            @RequestParam(required = false) String keyword) {
+            @RequestParam(required = false) String keyword,
+            @Parameter(description = "카테고리 ID로 필터링")
+            @RequestParam(required = false) Long categoryId) {
         Long userId = (Long) authentication.getPrincipal();
         User user = userService.getUserEntityById(userId);
 
@@ -106,7 +108,7 @@ public class NoticeController {
                 ? Sort.Direction.ASC : Sort.Direction.DESC;
         Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortField));
 
-        Page<NoticeResponse> notices = noticeService.getNotices(user, pageable, includeContent, keyword);
+        Page<NoticeResponse> notices = noticeService.getNotices(user, pageable, includeContent, keyword, categoryId);
         return ResponseEntity.ok(ApiResponse.success(notices));
     }
 
