@@ -69,18 +69,24 @@ public class DataInitializer implements CommandLineRunner {
 
         // 카테고리 생성 (이미 있는지 확인)
         List<Category> existingCategories = categoryRepository.findByOrganizationOrderByCreatedAtDesc(organization);
-        Category category;
+        Category[] categories;
+
         if (existingCategories.isEmpty()) {
-            category = Category.builder()
-                    .organization(organization)
-                    .name("일반 공지")
-                    .isVisible(true)
-                    .build();
-            category = categoryRepository.save(category);
-            log.info("카테고리 생성: {}", category.getName());
+            String[] categoryNames = {"일반 공지", "시스템/점검", "보안", "업데이트", "이벤트/혜택", "정책/약관"};
+            categories = new Category[categoryNames.length];
+
+            for (int i = 0; i < categoryNames.length; i++) {
+                categories[i] = Category.builder()
+                        .organization(organization)
+                        .name(categoryNames[i])
+                        .isVisible(true)
+                        .build();
+                categories[i] = categoryRepository.save(categories[i]);
+                log.info("카테고리 생성: {}", categories[i].getName());
+            }
         } else {
-            category = existingCategories.get(0);
-            log.info("기존 카테고리 사용: {}", category.getName());
+            categories = existingCategories.toArray(new Category[0]);
+            log.info("기존 카테고리 사용: {}개", categories.length);
         }
 
         // 공지사항 생성 (이미 있는지 확인)
@@ -157,9 +163,48 @@ public class DataInitializer implements CommandLineRunner {
                 "{{기관명}}입니다.\n\n2024년 사업 계획을 안내드립니다.\n\n더 나은 서비스를 위해 노력하겠습니다.\n\n담당자: {{담당자}}"
         };
 
+        // 각 공지사항에 맞는 카테고리 인덱스 매핑
+        // 0: 일반 공지, 1: 시스템/점검, 2: 보안, 3: 업데이트, 4: 이벤트/혜택, 5: 정책/약관
+        int[] categoryIndices = {
+                0,  // NoticeFlow 서비스 시작 안내 - 일반 공지
+                1,  // 시스템 정기 점검 안내 - 시스템/점검
+                2,  // 보안 업데이트 완료 공지 - 보안
+                3,  // 새로운 기능 업데이트 안내 - 업데이트
+                5,  // 서비스 이용약관 변경 안내 - 정책/약관
+                5,  // 개인정보처리방침 개정 안내 - 정책/약관
+                1,  // 긴급 서버 점검 공지 - 시스템/점검
+                0,  // 연말 휴무 안내 - 일반 공지
+                0,  // 신규 서비스 출시 안내 - 일반 공지
+                3,  // 사용자 매뉴얼 업데이트 - 업데이트
+                3,  // 모바일 앱 출시 안내 - 업데이트
+                3,  // API 버전 업데이트 공지 - 업데이트
+                1,  // 데이터 백업 완료 안내 - 시스템/점검
+                1,  // 네트워크 장애 복구 완료 - 시스템/점검
+                0,  // 신규 파트너십 체결 안내 - 일반 공지
+                4,  // 고객 만족도 조사 실시 - 이벤트/혜택
+                4,  // 이벤트 당첨자 발표 - 이벤트/혜택
+                3,  // 서비스 개선 사항 안내 - 업데이트
+                3,  // FAQ 업데이트 안내 - 업데이트
+                1,  // 결제 시스템 점검 안내 - 시스템/점검
+                5,  // 회원 등급 정책 변경 - 정책/약관
+                4,  // 포인트 적립 이벤트 안내 - 이벤트/혜택
+                0,  // 고객센터 운영시간 변경 - 일반 공지
+                4,  // 신규 제휴 할인 안내 - 이벤트/혜택
+                3,  // 앱 업데이트 필수 안내 - 업데이트
+                5,  // 개인정보 수집 동의 갱신 - 정책/약관
+                2,  // 비밀번호 변경 권고 - 보안
+                2,  // 로그인 보안 강화 안내 - 보안
+                1,  // 서비스 안정화 완료 공지 - 시스템/점검
+                0   // 2024년 사업 계획 안내 - 일반 공지
+        };
+
         for (int i = 0; i < 30; i++) {
             String title = titles[i];
             String originalContent = contents[i];
+
+            // 카테고리 배열 길이에 맞게 인덱스 조정
+            int categoryIndex = categoryIndices[i] % categories.length;
+            Category selectedCategory = categories[categoryIndex];
 
             String processedContent = replaceVariables(
                     originalContent,
@@ -171,7 +216,7 @@ public class DataInitializer implements CommandLineRunner {
             Notice notice = Notice.builder()
                     .organization(organization)
                     .user(user)
-                    .category(category)
+                    .category(selectedCategory)
                     .template(defaultTemplate)
                     .title(title)
                     .content(processedContent)
@@ -181,7 +226,7 @@ public class DataInitializer implements CommandLineRunner {
             noticeRepository.save(notice);
         }
 
-        log.info("30개의 더미 공지사항이 생성되었습니다.");
+        log.info("30개의 더미 공지사항이 6개 카테고리에 골고루 생성되었습니다.");
     }
 
     private String replaceVariables(String content, String title, String organizationName, String managerName) {
