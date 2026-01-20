@@ -11,12 +11,26 @@ import style from './Notices.module.scss';
 import { Link, useLoaderData } from 'react-router';
 import SearchInput from '@/components/inputs/SearchInput.tsx';
 import Button from '@/components/buttons/Button.tsx';
-import type { NoticeListType } from '@/types/dashboardTypes.ts';
+import type { NoticesType } from '@/types/noticeTypes.ts';
 import Pagination from '@/components/dashboard/Pagination.tsx';
+import type { CategoriesType } from '@/types/categoryTypes.ts';
+import { useEffect, useState } from 'react';
+import { getNotices } from '@/api/notices/noticesApi.ts';
 
 const Notices = () => {
-    const { data } = useLoaderData();
-    console.log('data:', data);
+    const { notices, categories } = useLoaderData();
+
+    const [currentCategory, setCurrentCategory] = useState(0);
+    const [noticeList, setNoticeList] = useState(notices);
+
+    const handleCategory = (id: number) => {
+        setCurrentCategory(id);
+    };
+
+    useEffect(() => {
+        getNotices(0, 4, true, currentCategory).then(res => setNoticeList(res.data.content));
+    }, [currentCategory]);
+
     return (
         <>
             <section className={style.noticesSection}>
@@ -33,36 +47,29 @@ const Notices = () => {
                     <search className={style.searchContainer}>
                         <ul className={style.filterList}>
                             <li className={`${style.filterItem}`}>
-                                <Button type='button' bgColor='orange' color='white' size='md'>
+                                <Button
+                                    type='button'
+                                    bgColor={`${currentCategory ? 'gray' : 'orange'}`}
+                                    color={`${currentCategory ? 'black' : 'white'}`}
+                                    size='md'
+                                    onClick={() => handleCategory(0)}
+                                >
                                     전체
                                 </Button>
                             </li>
-
-                            <li className={style.filterItem}>
-                                <Button type='button' bgColor='gray' color='black' size='md'>
-                                    학사일정
-                                </Button>
-                            </li>
-                            <li className={style.filterItem}>
-                                <Button type='button' bgColor='gray' color='black' size='md'>
-                                    프로그램
-                                </Button>
-                            </li>
-                            <li className={style.filterItem}>
-                                <Button type='button' bgColor='gray' color='black' size='md'>
-                                    급식
-                                </Button>
-                            </li>
-                            <li className={style.filterItem}>
-                                <Button type='button' bgColor='gray' color='black' size='md'>
-                                    교육
-                                </Button>
-                            </li>
-                            <li className={style.filterItem}>
-                                <Button type='button' bgColor='gray' color='black' size='md'>
-                                    상담
-                                </Button>
-                            </li>
+                            {categories.map((item: CategoriesType) => (
+                                <li key={item.id} className={`${style.filterItem}`}>
+                                    <Button
+                                        type='button'
+                                        bgColor={`${currentCategory === item.id ? 'orange' : 'gray'}`}
+                                        color={`${currentCategory === item.id ? 'white' : 'black'}`}
+                                        size='md'
+                                        onClick={() => handleCategory(item.id)}
+                                    >
+                                        {item.name}
+                                    </Button>
+                                </li>
+                            ))}
                         </ul>
                         <div className={style.searchGroup}>
                             <SearchInput
@@ -78,7 +85,7 @@ const Notices = () => {
                         </div>
                     </search>
                     <ul className={style.noticeList}>
-                        {data?.content.map((item: NoticeListType) => (
+                        {noticeList.map((item: NoticesType) => (
                             <li key={item.id} className={style.noticeItem}>
                                 <Link to='1' className={style.noticeWrapper}>
                                     <div className={style.noticeIconWrapper}>

@@ -5,3 +5,5 @@ export const ORGANIZATION_REGISTER = `${import.meta.env.VITE_API_URL}/api/auth/o
 export const NOTICES = `${import.meta.env.VITE_API_URL}/api/notices`;
 
 export const DASHBOARD_COUNTS = `${import.meta.env.VITE_API_URL}/api/dashboard/counts`;
+
+export const CATEGORIES = `${import.meta.env.VITE_API_URL}/api/categories`;

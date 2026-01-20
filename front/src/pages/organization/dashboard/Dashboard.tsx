@@ -12,7 +12,7 @@ import CopyIcon from '@/assets/icons/copy.svg?react';
 import StatusCard from '@/components/dashboard/StatusCard.tsx';
 import style from './Dashboard.module.scss';
 import { Link, useLoaderData } from 'react-router';
-import type { NoticeListType } from '@/types/dashboardTypes.ts';
+import type { NoticesType } from '@/types/noticeTypes.ts';
 
 const statusCardTemplate = [
     {
@@ -79,7 +79,7 @@ const Dashboard = () => {
                         </Link>
                     </div>
                     <ul className={style.noticeList}>
-                        {noticeList.map((notice: NoticeListType) => (
+                        {noticeList.map((notice: NoticesType) => (
                             <li key={notice.id}>
                                 <div className={style.noticeIconWrapper}>
                                     <NoticeIcon fill='#F98C1E' />

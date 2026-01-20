@@ -11,7 +11,7 @@ import DashboardLayout from '@/layouts/dashboard/DashboardLayout.tsx';
 import Dashboard from '@/pages/organization/dashboard/Dashboard.tsx';
 import { dashboardStatusData } from '@/api/dashboard/dashboardApi.ts';
 import Notices from '@/pages/organization/dashboard/notices/Notices.tsx';
-import { getNotices } from '@/api/dashboardApi.ts';
+import { getNoticesWithCategories } from '@/api/notices/noticesApi.ts';
 
 function App() {
     const router = createBrowserRouter([
@@ -60,7 +60,7 @@ function App() {
                         {
                             path: 'notices',
                             element: <Notices />,
-                            loader: async () => await getNotices(0, 4, true),
+                            loader: getNoticesWithCategories,
                         },
                     ],
                 },

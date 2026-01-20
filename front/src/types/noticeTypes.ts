@@ -1,4 +1,4 @@
-export interface NoticeListType {
+export interface NoticesType {
     id: number;
     title: string;
     content: string;

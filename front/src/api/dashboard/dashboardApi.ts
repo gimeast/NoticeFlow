@@ -1,4 +1,19 @@
-import { getCounts, getNotices } from '@/api/dashboardApi.ts';
+import { apiClient } from '@/api/client.ts';
+import { DASHBOARD_COUNTS } from '@/api/endpoints.ts';
+import { getNotices } from '@/api/notices/noticesApi.ts';
+
+const getCounts = async () => {
+    try {
+        const result = await apiClient(DASHBOARD_COUNTS, {
+            method: 'GET',
+            credentials: 'include',
+        });
+
+        return result;
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 export const dashboardStatusData = async () => {
     try {
