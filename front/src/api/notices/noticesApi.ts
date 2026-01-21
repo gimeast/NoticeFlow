@@ -20,5 +20,5 @@ export const getNotices = async (page: number, size: number, includeContent?: bo
 
 export const getNoticesWithCategories = async () => {
     const [noticeData, categoryData] = await Promise.all([getNotices(0, 4, true), getCategories()]);
-    return { notices: noticeData.data.content, categories: categoryData.data };
+    return { notices: noticeData.data, categories: categoryData.data };
 };

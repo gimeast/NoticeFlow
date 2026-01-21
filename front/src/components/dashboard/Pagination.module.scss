@@ -30,8 +30,11 @@
             font-size: 2rem;
 
             li {
-                padding: 1rem 1.6rem;
                 border-radius: 1rem;
+
+                button {
+                    padding: 1rem 1.6rem;
+                }
             }
             li.active {
                 background-color: c.$orange;

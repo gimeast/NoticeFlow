@@ -18,18 +18,29 @@ import { useEffect, useState } from 'react';
 import { getNotices } from '@/api/notices/noticesApi.ts';
 
 const Notices = () => {
-    const { notices, categories } = useLoaderData();
+    const categories = useLoaderData();
 
     const [currentCategory, setCurrentCategory] = useState(0);
-    const [noticeList, setNoticeList] = useState(notices);
+    const [noticeList, setNoticeList] = useState([]);
+    const [pageNumber, setPageNumber] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
+    const [totalElements, setTotalElements] = useState(0);
 
     const handleCategory = (id: number) => {
+        setPageNumber(0);
         setCurrentCategory(id);
+    };
+    const handlePageNumber = (pageNumber: number) => {
+        setPageNumber(pageNumber);
     };
 
     useEffect(() => {
-        getNotices(0, 4, true, currentCategory).then(res => setNoticeList(res.data.content));
-    }, [currentCategory]);
+        getNotices(pageNumber, 4, true, currentCategory).then(res => {
+            setTotalPages(res.data.totalPages);
+            setTotalElements(res.data.totalElements);
+            setNoticeList(res.data.content);
+        });
+    }, [currentCategory, pageNumber]);
 
     return (
         <>
@@ -57,7 +68,7 @@ const Notices = () => {
                                     전체
                                 </Button>
                             </li>
-                            {categories.map((item: CategoriesType) => (
+                            {categories.data.map((item: CategoriesType) => (
                                 <li key={item.id} className={`${style.filterItem}`}>
                                     <Button
                                         type='button'
@@ -121,7 +132,13 @@ const Notices = () => {
                             </li>
                         ))}
                     </ul>
-                    <Pagination />
+                    <Pagination
+                        pageNumber={pageNumber}
+                        totalPages={totalPages}
+                        totalElements={totalElements}
+                        blockSize={3}
+                        handlePageNumber={handlePageNumber}
+                    />
                 </div>
             </section>
         </>
