@@ -2,10 +2,16 @@ import { NOTICES } from '@/api/endpoints.ts';
 import { apiClient } from '@/api/client.ts';
 import { getCategories } from '@/api/categories/categoriesApi.ts';
 
-export const getNotices = async (page: number, size: number, includeContent?: boolean, categoryId?: number) => {
+export const getNotices = async (
+    page: number,
+    size: number,
+    includeContent?: boolean,
+    categoryId?: number,
+    search?: string
+) => {
     try {
         const result = await apiClient(
-            `${NOTICES}?page=${page}&size=${size}${includeContent ? `&includeContent=${includeContent}` : ''}${categoryId ? `&categoryId=${categoryId}` : ''}`,
+            `${NOTICES}?page=${page}&size=${size}${includeContent ? `&includeContent=${includeContent}` : ''}${categoryId ? `&categoryId=${categoryId}` : ''}${search ? `&keyword=${search}` : ''}`,
             {
                 method: 'GET',
                 credentials: 'include',

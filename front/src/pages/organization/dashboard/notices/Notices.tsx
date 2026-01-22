@@ -14,33 +14,39 @@ import Button from '@/components/buttons/Button.tsx';
 import type { NoticesType } from '@/types/noticeTypes.ts';
 import Pagination from '@/components/dashboard/Pagination.tsx';
 import type { CategoriesType } from '@/types/categoryTypes.ts';
-import { useEffect, useState } from 'react';
+import { type ChangeEvent, useEffect, useState } from 'react';
 import { getNotices } from '@/api/notices/noticesApi.ts';
+import useDebounce from '@/hooks/useDebounce.tsx';
 
 const Notices = () => {
     const categories = useLoaderData();
 
     const [currentCategory, setCurrentCategory] = useState(0);
     const [noticeList, setNoticeList] = useState([]);
+    const [search, setSearch] = useState('');
     const [pageNumber, setPageNumber] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [totalElements, setTotalElements] = useState(0);
+    const debouncedSearch = useDebounce(search, 500);
 
     const handleCategory = (id: number) => {
         setPageNumber(0);
         setCurrentCategory(id);
+    };
+    const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+        setSearch(e.target.value);
     };
     const handlePageNumber = (pageNumber: number) => {
         setPageNumber(pageNumber);
     };
 
     useEffect(() => {
-        getNotices(pageNumber, 4, true, currentCategory).then(res => {
+        getNotices(pageNumber, 4, true, currentCategory, debouncedSearch).then(res => {
             setTotalPages(res.data.totalPages);
             setTotalElements(res.data.totalElements);
             setNoticeList(res.data.content);
         });
-    }, [currentCategory, pageNumber]);
+    }, [currentCategory, pageNumber, debouncedSearch]);
 
     return (
         <>
@@ -85,9 +91,9 @@ const Notices = () => {
                         <div className={style.searchGroup}>
                             <SearchInput
                                 id='search'
-                                value=''
+                                value={search}
                                 labelText='공지 키워드 검색'
-                                onChange={() => console.log('')}
+                                onChange={handleSearch}
                                 placeholder='검색...'
                             />
                             <button aria-label='정렬 버튼'>
