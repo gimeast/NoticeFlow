@@ -24,6 +24,8 @@ const Notices = () => {
     const [currentCategory, setCurrentCategory] = useState(0);
     const [noticeList, setNoticeList] = useState([]);
     const [search, setSearch] = useState('');
+    const [isDesc, setIsDesc] = useState(true);
+
     const [pageNumber, setPageNumber] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [totalElements, setTotalElements] = useState(0);
@@ -36,17 +38,27 @@ const Notices = () => {
     const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
     };
+    const handleSort = () => {
+        setIsDesc(prevState => !prevState);
+    };
     const handlePageNumber = (pageNumber: number) => {
         setPageNumber(pageNumber);
     };
 
     useEffect(() => {
-        getNotices(pageNumber, 4, true, currentCategory, debouncedSearch).then(res => {
+        getNotices({
+            page: pageNumber,
+            size: 4,
+            isDesc,
+            includeContent: true,
+            categoryId: currentCategory,
+            search: debouncedSearch,
+        }).then(res => {
             setTotalPages(res.data.totalPages);
             setTotalElements(res.data.totalElements);
             setNoticeList(res.data.content);
         });
-    }, [currentCategory, pageNumber, debouncedSearch]);
+    }, [currentCategory, pageNumber, debouncedSearch, isDesc]);
 
     return (
         <>
@@ -96,7 +108,7 @@ const Notices = () => {
                                 onChange={handleSearch}
                                 placeholder='검색...'
                             />
-                            <button aria-label='정렬 버튼'>
+                            <button aria-label='정렬 버튼' onClick={handleSort}>
                                 <SortIcon />
                             </button>
                         </div>
