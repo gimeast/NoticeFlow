@@ -15,6 +15,8 @@ const Pagination = ({ pageNumber, totalPages, totalElements, blockSize, handlePa
     const startPage = currentBlock * blockSize;
     const endPage = Math.min(startPage + blockSize - 1, totalPages - 1);
     const pageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i + 1);
+    const isFirstBlock = currentBlock === 0;
+    const isLastBlock = endPage >= totalPages - 1;
 
     const handlePrevBlock = () => {
         const newBlock = currentBlock - 1;
@@ -39,8 +41,8 @@ const Pagination = ({ pageNumber, totalPages, totalElements, blockSize, handlePa
                 총 <span>{totalElements}</span>개의 공지
             </p>
             <div className={style.paginationWrapper}>
-                <button aria-label='이전 페이지' onClick={handlePrevBlock} disabled={currentBlock === 0}>
-                    <PaginationArrowIcon />
+                <button aria-label='이전 페이지' onClick={handlePrevBlock} disabled={isFirstBlock}>
+                    <PaginationArrowIcon fill={isFirstBlock ? '#c9c9c9' : '#1C1B1F'} />
                 </button>
                 <ul className={style.pagination}>
                     {pageNumbers.map(page => (
@@ -49,8 +51,11 @@ const Pagination = ({ pageNumber, totalPages, totalElements, blockSize, handlePa
                         </li>
                     ))}
                 </ul>
-                <button aria-label='다음 페이지' onClick={handleNextBlock} disabled={endPage >= totalPages - 1}>
-                    <PaginationArrowIcon style={{ transform: 'rotate(180deg)' }} />
+                <button aria-label='다음 페이지' onClick={handleNextBlock} disabled={isLastBlock}>
+                    <PaginationArrowIcon
+                        fill={isLastBlock ? '#c9c9c9' : '#1C1B1F'}
+                        style={{ transform: 'rotate(180deg)' }}
+                    />
                 </button>
             </div>
         </nav>

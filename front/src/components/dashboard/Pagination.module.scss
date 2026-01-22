@@ -38,7 +38,10 @@
             }
             li.active {
                 background-color: c.$orange;
-                color: c.$white;
+
+                button {
+                    color: c.$white;
+                }
             }
         }
     }
