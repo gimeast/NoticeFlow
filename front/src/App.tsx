@@ -12,6 +12,7 @@ import Dashboard from '@/pages/organization/dashboard/Dashboard.tsx';
 import { dashboardStatusData } from '@/api/dashboard/dashboardApi.ts';
 import Notices from '@/pages/organization/dashboard/notices/Notices.tsx';
 import { getCategories } from '@/api/categories/categoriesApi.ts';
+import NewNotice from '@/pages/organization/dashboard/notices/new/NewNotice.tsx';
 
 function App() {
     const router = createBrowserRouter([
@@ -61,6 +62,10 @@ function App() {
                             path: 'notices',
                             element: <Notices />,
                             loader: async () => getCategories(),
+                        },
+                        {
+                            path: 'notices/new',
+                            element: <NewNotice />,
                         },
                     ],
                 },

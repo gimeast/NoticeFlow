@@ -1,0 +1,79 @@
+@use '@/styles/variables/colors' as c;
+
+.headerWrapper {
+    display: flex;
+    flex-direction: column;
+
+    a {
+        display: flex;
+        align-items: center;
+
+        color: c.$orange;
+        font-size: 1.4rem;
+    }
+    .title {
+        margin-top: 1.5rem;
+        font-weight: 700;
+        font-size: 2.4rem;
+    }
+    .content {
+        margin-top: 1rem;
+        font-weight: 300;
+        font-size: 1.6rem;
+    }
+}
+
+.stepList {
+    display: flex;
+    margin-top: 3rem;
+
+    .step {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: c.$gray-300;
+
+            span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                width: 6.1rem;
+                height: 6.1rem;
+
+                font-weight: 700;
+                font-size: 2.4rem;
+                background-color: c.$gray-200;
+                border-radius: 50%;
+            }
+            p {
+                margin-top: 1rem;
+                font-weight: 500;
+                font-size: 1.6rem;
+            }
+        }
+
+        &.active {
+            span {
+                color: c.$white;
+                background-color: c.$orange;
+            }
+            p {
+                color: c.$orange;
+            }
+        }
+    }
+    .step:not(:last-child)::after {
+        content: '';
+        width: 21rem;
+        height: 0.4rem;
+        margin: 0 2rem;
+        background-color: c.$gray-200;
+    }
+}
